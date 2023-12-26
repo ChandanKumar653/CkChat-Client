@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import logo from './logo.svg';
 import './App.css';
 
@@ -23,3 +24,14 @@ function App() {
 }
 
 export default App;
+=======
+import React from 'react';
+import Layout from './Layout'
+export default function App() {
+  return (
+    <>
+      <Layout />
+    </>
+  )
+}
+>>>>>>> a967d19 (updated site with whatsapp share)
