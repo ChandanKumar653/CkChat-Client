@@ -21,8 +21,8 @@ const NotificationCard = () => {
 
     const handleNotificationToggle = async () => {
         setNotificationOn((prev) => !prev);
-
-        await notifyUser();
+        if (!notificationOn)
+            await notifyUser();
 
     };
 
