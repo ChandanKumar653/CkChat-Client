@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card, CardContent, Typography, } from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
-
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 const ShareCard = () => {
 
     function handleShare() {
@@ -40,7 +39,7 @@ const ShareCard = () => {
                         Share&nbsp;&nbsp;
                     </Typography>
                     {/* <Switch checked={notificationOn} onChange={handleNotificationToggle} /> */}
-                    <SendIcon style={{ cursor: 'pointer', color: 'gold' }} />
+                    <WhatsAppIcon style={{ cursor: 'pointer', color: 'gold' }} />
                 </CardContent>
             </Card>
         </>
