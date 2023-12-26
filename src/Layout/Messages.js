@@ -39,9 +39,9 @@ const Messages = ({ allMessages }) => {
         }
 
         return () => {
-            if (scrollRef.current) {
-                scrollRef.current.removeEventListener('scroll', handleScroll);
-            }
+            // if (scrollRef.current) {
+            // scrollRef.current.removeEventListener('scroll', handleScroll);
+            // }
         };
     }, []);
 
@@ -70,7 +70,7 @@ const Messages = ({ allMessages }) => {
                         scrollbarColor: 'transparent transparent', // For Firefox
                         // For WebKit browsers (Chrome, Safari)
                         scrollbarTrackColor: 'transparent',
-                        scrollbarWidth: 'thin',
+                        // scrollbarWidth: 'thin',
                         // Styles for WebKit scrollbar
                         WebkitScrollbarWidth: 'thin',
                         WebkitScrollbarTrackColor: 'transparent',

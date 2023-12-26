@@ -28,7 +28,7 @@ export default function Body() {
     const [messages, setMessages] = useState([]);
     const [myMessages, setMyMessages] = useState([]);
     const [allMessages, setAllMessages] = useState([]);
-
+    console.log(messages, myMessages);
     // function filterUniqueById(arr) {
     //     const uniqueMap = new Map();
     //     arr.forEach(obj => {
