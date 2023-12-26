@@ -15,7 +15,7 @@ import ShareCard from './ShareCard';
 import Invite from './Invite';
 import io from "socket.io-client";
 import Messages from './Messages';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 
 export default function Body() {
     const [searchText, setSearchText] = useState("");
@@ -29,13 +29,13 @@ export default function Body() {
     const [myMessages, setMyMessages] = useState([]);
     const [allMessages, setAllMessages] = useState([]);
 
-    function filterUniqueById(arr) {
-        const uniqueMap = new Map();
-        arr.forEach(obj => {
-            uniqueMap.set(obj.id, obj);
-        });
-        return Array.from(uniqueMap.values());
-    }
+    // function filterUniqueById(arr) {
+    //     const uniqueMap = new Map();
+    //     arr.forEach(obj => {
+    //         uniqueMap.set(obj.id, obj);
+    //     });
+    //     return Array.from(uniqueMap.values());
+    // }
 
 
     // console.log(messages);
@@ -83,7 +83,7 @@ export default function Body() {
             }
         };
 
-    }, [socket, allMessages]);
+    }, [socket, allMessages, socketId]);
 
 
 

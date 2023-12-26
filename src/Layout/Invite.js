@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import { Card, CardContent, Typography, Switch } from '@mui/material';
+import React from 'react';
+import { Card, CardContent, Typography } from '@mui/material';
 // import ContactMailIcon from '@mui/icons-material/ContactMail';
 import MailIcon from '@mui/icons-material/Mail';
 const Invite = () => {
-    const [notificationOn, setNotificationOn] = useState(false);
 
     const handleShareToggle = () => {
-        setNotificationOn((prev) => !prev);
+        // setNotificationOn((prev) => !prev);
         // Perform any actions based on notification state change here
     };
 
