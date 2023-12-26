@@ -401,12 +401,12 @@ export default function Body() {
                 }}>
                     {/* <Grid item sx={{ width: "17vw", backgroundColor: "#1f1e1c", borderTopLeftRadius: "3vw", borderBottomLeftRadius: "3vw", overflowY: "auto", boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)" }}> */}
                     {/* Content for the third section */}
-                    <SquareAvatar {...stringAvatar('Chandan Kumar')} sx={{
+                    <SquareAvatar {...stringAvatar("Guest Chat")} sx={{
                         width: 60, height: 60
 
                     }} />
                     <br />
-                    <Typography variant='caption' color={"gold"} sx={{ fontWeight: "900", textShadow: '0.5px 0.5px 1px gold', }}>Chandan Kumar</Typography>
+                    <Typography variant='caption' color={"gold"} sx={{ fontWeight: "900", textShadow: '0.5px 0.5px 1px gold', }}>{socketId}</Typography>
                     <Typography variant='caption' color={"#FEFBEC"}>Online</Typography>
                     <br />
                     <ButtonGroup sx={{ '& > *:not(:last-child)': { marginRight: '20px' } }}>
@@ -485,7 +485,7 @@ export default function Body() {
 
                     <br />
                     <Typography variant='h6' sx={{ color: "gold" }}>User Name</Typography>
-                    <Typography variant='caption' color={"#FFFDD0"}>Chandan Kumar</Typography>
+                    <Typography variant='caption' color={"#FFFDD0"}>{socketId}</Typography>
                     <br />
                     <ShareCard />
                     <br />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, Typography, } from '@mui/material';
+import { Card, CardContent, Tooltip, Typography, } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 const ShareCard = () => {
 
@@ -10,38 +10,44 @@ const ShareCard = () => {
     return (
         <>
             <br />
-            <Card
-                variant="outlined"
-                onClick={handleShare}
-                sx={{
-                    width: 100,
-                    height: 20,
-                    cursor: 'pointer',
-                    border: '1px solid gold',
-                    borderRadius: '8px',
-                    backgroundColor: '#1f1f1f',
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    textAlign: "center",
-                    paddingTop: 2
-                }}
-            >
-                <CardContent
+            <Tooltip title="Share On Whatsapp">
+                <Card
+                    variant="outlined"
+                    onClick={handleShare}
                     sx={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        padding: '8px',
+                        width: 100,
+                        height: 20,
+                        cursor: 'pointer',
+                        border: '1px solid gold',
+                        borderRadius: '8px',
+                        backgroundColor: '#1f1f1f',
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        textAlign: "center",
+                        paddingTop: 2,
+                        '&:hover': {
+                            backgroundColor: '#84969C',
+                        },
                     }}
                 >
-                    <Typography variant="body2" sx={{ color: '#fff' }}>
-                        Share&nbsp;&nbsp;
-                    </Typography>
-                    {/* <Switch checked={notificationOn} onChange={handleNotificationToggle} /> */}
-                    <WhatsAppIcon style={{ cursor: 'pointer', color: 'gold' }} />
-                </CardContent>
-            </Card>
+                    <CardContent
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            padding: '8px',
+
+                        }}
+                    >
+                        <Typography variant="body2" sx={{ color: '#fff' }}>
+                            Share&nbsp;&nbsp;
+                        </Typography>
+                        {/* <Switch checked={notificationOn} onChange={handleNotificationToggle} /> */}
+                        <WhatsAppIcon style={{ cursor: 'pointer', color: 'gold' }} />
+                    </CardContent>
+                </Card>
+            </Tooltip>
         </>
     );
 };
