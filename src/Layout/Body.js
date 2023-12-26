@@ -25,10 +25,10 @@ export default function Body() {
 
     // console.log("id", id);
 
-    const [messages, setMessages] = useState([]);
-    const [myMessages, setMyMessages] = useState([]);
+    // const [messages, setMessages] = useState([]);
+    // const [myMessages, setMyMessages] = useState([]);
     const [allMessages, setAllMessages] = useState([]);
-    console.log(messages, myMessages);
+    // console.log(messages, myMessages);
     // function filterUniqueById(arr) {
     //     const uniqueMap = new Map();
     //     arr.forEach(obj => {
@@ -67,7 +67,7 @@ export default function Body() {
         if (socket) {
             // Receive messages from the server
             socket.on('chat message', (msg) => {
-                setMessages((prevMessages) => [...prevMessages, msg]);
+                // setMessages((prevMessages) => [...prevMessages, msg]);
                 // console.log("msg=", msg);
                 if (msg.from !== socket.id) {
                     const updatedArray = [...allMessages, { by: 'other', msg: msg, id: socketId }];
@@ -91,7 +91,7 @@ export default function Body() {
 
     const sendMessage = (e) => {
         e.preventDefault();
-        setMyMessages((prevMessages) => [...prevMessages, message]);
+        // setMyMessages((prevMessages) => [...prevMessages, message]);
         const updatedArray = [...allMessages, { by: 'me', msg: { message: message, from: socket.id }, id: socketId }];
         setAllMessages(updatedArray);
         socket.emit("chat message", { message: message, from: socket.id }); // Send message to the server
