@@ -6,6 +6,7 @@ async function notifyUser() {
         alert("Browser does not support notifications");
     } else if (Notification.permission === "granted") {
         // const notification = new Notification(notificationText);
+        new Notification("Already enabled permission in this browser!");
         // console.log(notification);
         // return;
     } else if (Notification.permission !== "denied") {

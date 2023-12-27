@@ -97,21 +97,6 @@ export default function Body() {
         socket.emit("chat message", { message: message, from: socket.id }); // Send message to the server
         setMessage("");
     };
-    // useEffect(() => {
-    //     // Receive messages from the server
-    //     socket.on("chat message", (msg) => {
-    //         console.log("socket here")
-    //         setMessages((prevMessages) => [...prevMessages, msg]);
-    //         const updatedArray = [...allMessages, { by: 'other', msg: msg }];
-    //         setAllMessages(updatedArray);
-    //     });
-
-    //     return () => {
-    //         socket.disconnect(); // Disconnect the socket when the component unmounts
-    //     };
-    // }, [socket]);
-
-
 
 
 
