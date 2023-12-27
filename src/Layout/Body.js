@@ -47,8 +47,8 @@ export default function Body() {
 
     useEffect(() => {
         // Create a new socket connection when the component mounts
-        // const newSocket = io('https://ckchat-server.onrender.com/'); // Replace 'your_server_url_here' with your actual server URL
-        const newSocket = io('http://localhost:3001');
+        const newSocket = io('https://ckchat-server.onrender.com/'); // Replace 'your_server_url_here' with your actual server URL
+        // const newSocket = io('http://localhost:3001');
         setSocket(newSocket);
 
         newSocket.on('connect', () => {

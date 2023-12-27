@@ -1,19 +1,34 @@
 import React, { useState } from 'react';
 import { Card, CardContent, Typography, Switch } from '@mui/material';
 
-async function notifyUser(notificationText = "Thank you!! You will now recieve notification when a new user joins!") {
+async function notifyUser() {
     if (!("Notification" in window)) {
         alert("Browser does not support notifications");
     } else if (Notification.permission === "granted") {
-        const notification = new Notification(notificationText);
-        console.log(notification);
+        // const notification = new Notification(notificationText);
+        // console.log(notification);
+        // return;
     } else if (Notification.permission !== "denied") {
         await Notification.requestPermission().then((permission) => {
-            const notification = new Notification(notificationText);
-            console.log(notification);
+
+            // const notification =
+            new Notification("Notification enabling successful");
+            // console.log(notification);
+
         })
+        // let reg = 
+        await registerSW();
+        // console.log(reg);
+        // reg.showNotification("Registered");
     }
 }
+
+
+const registerSW = async () => {
+    const registration = await navigator.serviceWorker.register('sw.js');
+    return registration;
+}
+
 
 
 const NotificationCard = () => {
@@ -23,7 +38,6 @@ const NotificationCard = () => {
         setNotificationOn((prev) => !prev);
         if (!notificationOn)
             await notifyUser();
-
     };
 
 
