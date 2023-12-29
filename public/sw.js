@@ -28,8 +28,8 @@ function urlB64ToUint8Array(base64String) {
 async function saveSubscription(subscription) {
     try {
         // console.log("subscription in save=", subscription);
-        const response = await fetch("http://localhost:3001/save-subscription", {
-            // const response = await fetch("https://ckchat-server.onrender.com/save-subscription", {
+        // const response = await fetch("http://localhost:3001/save-subscription", {
+        const response = await fetch("https://ckchat-server.onrender.com/save-subscription", {
             method: 'post',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(subscription)
