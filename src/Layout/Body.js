@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Grid, Divider, Tooltip, Avatar, Typography } from '@mui/material';
+import { Grid, Divider, Tooltip, Avatar, Typography, useMediaQuery } from '@mui/material';
 import GlobalChatCard from './GlobalChatCard';
 import VideoCallIcon from '@mui/icons-material/VideoCall';
 import ChatIcon from '@mui/icons-material/Chat';
@@ -15,9 +15,12 @@ import ShareCard from './ShareCard';
 import Invite from './Invite';
 import io from "socket.io-client";
 import Messages from './Messages';
+
 // import { v4 as uuidv4 } from 'uuid';
 
 export default function Body() {
+    const isMobile = useMediaQuery('(max-width:600px)');
+
     const [searchText, setSearchText] = useState("");
     const [message, setMessage] = useState("");
     // const [id, setId] = useState(uuidv4());
@@ -48,7 +51,12 @@ export default function Body() {
     useEffect(() => {
         // Create a new socket connection when the component mounts
         // const newSocket = io('https://ckchat-server.onrender.com/'); // Replace 'your_server_url_here' with your actual server URL
-        const newSocket = io('https://ckchat-server.onrender.com/', {
+        // const newSocket = io('https://ckchat-server.onrender.com/', {
+        //     auth: {
+        //         token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiQ2tDaGF0IiwiaWF0IjoxNzAzODU5MzE0fQ.Da4q9bPn4sa0B4sGq6TLy3k5ZqW4mBzifGPjHIx8E-g",
+        //     },
+        // });
+        const newSocket = io('http://localhost:3001', {
             auth: {
                 token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiQ2tDaGF0IiwiaWF0IjoxNzAzODU5MzE0fQ.Da4q9bPn4sa0B4sGq6TLy3k5ZqW4mBzifGPjHIx8E-g",
             },
@@ -147,13 +155,13 @@ export default function Body() {
 
 
     return (
-        <div style={{ backgroundColor: "#010101", overflowY: "auto", position: "fixed" }}>
+        <div style={{ backgroundColor: "#010101", overflowY: "auto", position: "flex" }}>
             <Grid container sx={{ height: "100vh" }}>
                 {/* <Grid item sx={{ width: "18vw", backgroundColor: "#1f1f1f", borderTopRightRadius: "3vw", borderBottomRightRadius: "3vw", overflowY: "auto", boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.2)" }}> */}
                 <Grid item sx={{
                     width: "18vw",
                     height: "100vh", // Ensure the item takes full height
-
+                    visibility: isMobile ? 'hidden' : 'visible',
                     backgroundColor: "#1f1f1f",
                     borderTopRightRadius: "3vw",
                     borderBottomRightRadius: "3vw",
@@ -375,6 +383,7 @@ export default function Body() {
                 <Grid item sx={{
                     width: "18vw",
                     height: "100vh",
+                    visibility: isMobile ? 'hidden' : 'visible',
                     backgroundColor: "#1f1e1c",
                     borderTopLeftRadius: "3vw",
                     borderBottomLeftRadius: "3vw",
