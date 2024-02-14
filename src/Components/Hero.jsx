@@ -114,7 +114,7 @@ export default function Hero() {
             </div>
           </div>
         </div>
-        <div className="md:w-[100%] sm-w[100%] md:ml-auto">
+        <div className="md:w-[80%] sm-w[100%] md:ml-auto">
           <Lottie animationData={randomAnimation} />
         </div>
       </div>
