@@ -27,14 +27,17 @@ function urlB64ToUint8Array(base64String) {
 
 async function saveSubscription(subscription) {
     try {
-        // console.log("subscription in save=", subscription);
-        // const response = await fetch("http://localhost:3001/save-subscription", {
-        const response = await fetch("https://ckchat-server.onrender.com/save-subscription", {
+        console.log("subscription in save=", subscription);
+        const response = await fetch("http://localhost:3001/save-subscription", {
+            // const response = await fetch("https://ckchat-server.onrender.com/save-subscription", {
             method: 'post',
-            headers: { 'Content-type': 'application/json' },
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiQ2tDaGF0IiwiaWF0IjoxNzAzODU5MzE0fQ.Da4q9bPn4sa0B4sGq6TLy3k5ZqW4mBzifGPjHIx8E-g",
+            },
             body: JSON.stringify(subscription)
         })
-        // console.log(response);
+        console.log(response);
         return response.json();
     } catch (e) {
         console.log(e);
