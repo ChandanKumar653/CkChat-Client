@@ -24,7 +24,6 @@ export default function App() {
           <div>
             <NavBar />
           </div>
-          </div>
           <Routes>
             <Route path="/" element={<Home />} />
               <Route path="/chat" element={<Layout />} />
@@ -32,7 +31,7 @@ export default function App() {
           </Routes>
       {/* <Layout /> */}
 {/* <AnimationTest/> */}
-    
+        </div>
       </BrowserRouter>
 }
     </>
