@@ -6,8 +6,11 @@ import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrow
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import { useNavigate } from 'react-router-dom';
+import { useMediaQuery } from "@mui/material";
+
 export default function Hero() {
     const navigate=useNavigate();
+  const isMobile = useMediaQuery("(max-width:600px)");
 
       // const animations = [
       //   animation,
@@ -25,16 +28,13 @@ export default function Hero() {
 
   return (
     <div className="bg-[#0e0e0f] w-full overflow-hidden pt-2 pl-16 pr-16">
-      <div className="bg-[#0e0e0f]  " style={{ height: "95svh" }}>
+      <div className="bg-[#0e0e0f]  " style={{ height: "95vh" }}>
         <div className="block md:flex">
           <div>
-            <br />
-            <div className="sm:hidden">
-              <br />
-              <br />
+            <br /> <br /> <br />
+            <div className={`${isMobile ? "hidden" : "block"}`}>
               <br />
             </div>
-
             <div className="flex items-center text-white ">
               <KeyboardDoubleArrowLeftIcon sx={{ color: "red" }} />
               <div
@@ -45,9 +45,7 @@ export default function Hero() {
               </div>
               <KeyboardDoubleArrowRightIcon sx={{ color: "red" }} />
             </div>
-
             <br />
-
             <div className="font-bold md:text-[50px] text-[30px] font-serif ">
               <span className="text-white">We are Digital</span>
               <br />
@@ -56,16 +54,13 @@ export default function Hero() {
               <br />
               <span style={{ color: "red" }}>Chat.</span>
             </div>
-
             <br />
-
             <div className="text-white w-[80%]">
               <p>
                 This is a modern chat app which do not records or stores any
                 history. So you don't have to worry about privacy anymore.
               </p>
             </div>
-
             <br />
             <div className="flex items-center">
               <div
@@ -113,9 +108,16 @@ export default function Hero() {
                   }}
                 />
                 &nbsp; &nbsp;
-                <span className="text-white"> Watch Video</span>
+                {!isMobile ? (
+                  <span className="text-white"> Watch Video</span>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
+          </div>
+          <div className={`${isMobile ? "block" : "hidden"}`}>
+            <br />
           </div>
           <div className="md:w-[80%] sm-w[100%] md:ml-auto">
             <Lottie animationData={animation2} />
