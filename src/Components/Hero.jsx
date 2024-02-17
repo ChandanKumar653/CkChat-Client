@@ -27,7 +27,7 @@ export default function Hero() {
 
 
   return (
-    <div className="bg-[#0e0e0f] w-full overflow-hidden pt-2 pl-16 pr-16">
+    <div className="bg-[#0e0e0f] w-full overflow-hidden pt-2 md:pl-16 md:pr-16 pl-10 pr-10">
       <div className="bg-[#0e0e0f]  " style={{ height: "95vh" }}>
         <div className="block md:flex">
           <div>
