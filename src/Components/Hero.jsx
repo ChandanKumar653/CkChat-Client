@@ -25,13 +25,16 @@ export default function Hero() {
 
   return (
     <div className="bg-[#0e0e0f] w-full overflow-hidden pt-2 pl-16 pr-16">
-      <div className="bg-[#0e0e0f]  " style={{height:"95dvh"}}>
+      <div className="bg-[#0e0e0f]  " style={{ height: "95svh" }}>
         <div className="block md:flex">
           <div>
-            <br />
-            <br />
-            <br />
-            <br />
+            <div className='sm:hidden'>
+             
+              <br />
+              <br />
+              <br />
+              <br />
+            </div>
 
             <div className="flex items-center text-white ">
               <KeyboardDoubleArrowLeftIcon sx={{ color: "red" }} />
