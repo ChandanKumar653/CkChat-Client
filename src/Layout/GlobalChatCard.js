@@ -15,7 +15,7 @@ import {
 const CustomCard = styled(Card)(({ theme }) => ({
     maxWidth: '30vw',
     // margin: 'auto',
-    height: "15vh",
+    height: "auto",
     backgroundColor: '#1f1f1f',
     color: 'grey',
     padding: theme.spacing(2),
@@ -32,7 +32,8 @@ const GlobalChatCard = () => {
     ];
 
     return (
-        <CustomCard sx={{ marginTop: -1.1 }}>
+        <CustomCard >
+            {/* sx={{ marginTop: -1.1 }} */}
             <CardContent>
                 <center>
                     <Typography variant="h5" component="h2" sx={{ color: "gold", textShadow: '1px 1px 2px gold', }} gutterBottom>
@@ -48,8 +49,8 @@ const GlobalChatCard = () => {
                                         {/* Add more Avatar components for a group effect */}
                                         <Avatar alt={msg.sender} src={`https://i.pravatar.cc/150?u=${msg.sender + '1'}`} />
                                         <Avatar alt={msg.sender} src={`https://i.pravatar.cc/150?u=${msg.sender + '2'}`} />
-                                        <Avatar alt={msg.sender} src={`https://i.pravatar.cc/150?u=${msg.sender + '1'}`} />
-                                        <Avatar alt={msg.sender} src={`https://i.pravatar.cc/150?u=${msg.sender + '2'}`} />
+                                        <Avatar alt={msg.sender} src={`https://i.pravatar.cc/150?u=${msg.sender + '3'}`} />
+                                        <Avatar alt={msg.sender} src={`https://i.pravatar.cc/150?u=${msg.sender + '4'}`} />
                                         {/* ...and so on */}
                                     </AvatarGroup>
                                 </ListItemAvatar>

@@ -13,12 +13,14 @@ import ListOfUsers from './ListOfUsers';
 import NotificationCard from './NotificationCard';
 import ShareCard from './ShareCard';
 import Invite from './Invite';
-import io from "socket.io-client";
+// import io from "socket.io-client";
 import Messages from './Messages';
-
+import { useSocket } from '../Providers/Socket';
 // import { v4 as uuidv4 } from 'uuid';
 
 export default function Body() {
+const {socket}=useSocket();
+
     const isMobile = useMediaQuery('(max-width:600px)');
 
     const [searchText, setSearchText] = useState("");
@@ -46,7 +48,7 @@ export default function Body() {
     // const socket = io("http://localhost:3001");
     // const socket = io("https://ckchat-server.onrender.com/");
 
-    const [socket, setSocket] = useState(null);
+    // const [socket, setSocket] = useState(null);
 
     useEffect(() => {
         // Create a new socket connection when the component mounts
@@ -56,12 +58,14 @@ export default function Body() {
         //         token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiQ2tDaGF0IiwiaWF0IjoxNzAzODU5MzE0fQ.Da4q9bPn4sa0B4sGq6TLy3k5ZqW4mBzifGPjHIx8E-g",
         //     },
         // });
-        const newSocket = io('http://localhost:3001', {
-            auth: {
-                token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiQ2tDaGF0IiwiaWF0IjoxNzAzODU5MzE0fQ.Da4q9bPn4sa0B4sGq6TLy3k5ZqW4mBzifGPjHIx8E-g",
-            },
-        });
-        setSocket(newSocket);
+        // const newSocket = io('http://localhost:3001', {
+        //     auth: {
+        //         token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiQ2tDaGF0IiwiaWF0IjoxNzAzODU5MzE0fQ.Da4q9bPn4sa0B4sGq6TLy3k5ZqW4mBzifGPjHIx8E-g",
+        //     },
+        // });
+        // setSocket(newSocket);
+
+const newSocket=socket;
 
         newSocket.on('connect', () => {
             setSocketId(newSocket.id); // Set the socket ID when connected
@@ -72,7 +76,7 @@ export default function Body() {
                 newSocket.disconnect();
             }
         };
-    }, []);
+    }, [socket]);
 
     useEffect(() => {
         // setId(uuidv4());
@@ -317,7 +321,8 @@ export default function Body() {
                     <GlobalChatCard />
                     <br />
                     <Divider style={{ width: '80%', margin: '10px 0', color: "grey", backgroundColor: "gold" }} />
-                    <ListOfUsers />
+                   
+                    {/* <ListOfUsers />*/}
                     {/* <ul> */}
                     {/* {users.map((user) => (
                             <li key={user.id}>
