@@ -9,7 +9,7 @@ import SendIcon from '@mui/icons-material/Send';
 import CallIcon from '@mui/icons-material/Call';
 import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
 import { TextField, IconButton, InputAdornment, ButtonGroup, styled } from '@mui/material';
-import ListOfUsers from './ListOfUsers';
+// import ListOfUsers from './ListOfUsers';
 import NotificationCard from './NotificationCard';
 import ShareCard from './ShareCard';
 import Invite from './Invite';

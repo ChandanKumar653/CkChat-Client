@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 // import img from '../Assets/Images/speak.png';
 import close from '../Assets/Images/close.svg';
 import menu from '../Assets/Images/menu.svg';
-import logo from '../Assets/Images/speak.png';
+// import logo from '../Assets/Images/speak.png';
 import { Button } from "@mui/material";
 export default function NavBar() {
   const navigate=useNavigate();
