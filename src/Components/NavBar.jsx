@@ -37,7 +37,7 @@ export default function NavBar() {
   ];
   return (
     <>
-      <div className="bg-[#0e0e0f] w-full overflow-hidden pt-2 md:pl-16 md:pr-16 pl-10 pr-10">
+      <div className="bg-[#0e0e0f] w-full overflow-hidden pt-2 pl-16 pr-16">
         <nav className="bg-[#0e0e0f] w-full py-2 justify-between items-center navbar">
           {/* <img src={img} alt="logo" className=" w-[50px] h-[35px] m-2"/> */}
 
