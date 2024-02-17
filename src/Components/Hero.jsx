@@ -31,8 +31,9 @@ export default function Hero() {
       <div className="bg-[#0e0e0f]  " style={{ height: "95vh" }}>
         <div className="block md:flex">
           <div>
-            <br /> <br /> <br />
+            <br /> <br />
             <div className={`${isMobile ? "hidden" : "block"}`}>
+              <br />
               <br />
             </div>
             <div className="flex items-center text-white ">
