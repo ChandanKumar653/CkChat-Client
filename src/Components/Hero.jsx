@@ -28,9 +28,8 @@ export default function Hero() {
       <div className="bg-[#0e0e0f]  " style={{ height: "95svh" }}>
         <div className="block md:flex">
           <div>
-            <div className='sm:hidden'>
-             
-              <br />
+            <br />
+            <div className="sm:hidden">
               <br />
               <br />
               <br />
