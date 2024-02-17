@@ -89,7 +89,7 @@ export default function Hero() {
                     navigate("/about-us");
                   }}
                 >
-                  KNOW MORE
+                  {isMobile ? "MORE" : " KNOW MORE"}
                   <KeyboardDoubleArrowRightIcon sx={{ color: "white" }} />
                 </button>
               </div>
