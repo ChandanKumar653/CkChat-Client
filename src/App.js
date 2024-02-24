@@ -6,9 +6,10 @@ import Home from './Pages/Home';
 import PageNotFound from './Components/PageNotFound';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import AnimationLoading from './Components/AnimationLoading';
-import SignIn from './Pages/SignIn';
+import JoinRoom from './Pages/JoinRoom';
 import Room from './Components/Room';
 import { SocketProvider } from './Providers/Socket';
+import Login from './Components/Login/Login';
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -42,7 +43,8 @@ export default function App() {
          
             <Route path="/" element={<Home />} />
               <Route path="/chat" element={<Layout />} />
-              <Route path="/sign-in" element={<SignIn />} />
+              <Route path="/sign-in" element={<Login />} />
+              <Route path="/join-room" element={<JoinRoom />} />
               <Route path="/chat/:userName/:roomId" element={<Room />} />
             <Route path="*" element={<PageNotFound />} />
            

@@ -18,8 +18,8 @@ export default function NavBar() {
       title: "Global Chat",
     },
     {
-      Path: "/about-us",
-      title: "About Us",
+      Path: "/join-room",
+      title: "Join Room",
     },
 
     {
