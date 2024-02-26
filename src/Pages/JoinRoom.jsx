@@ -34,7 +34,7 @@ export default function JoinRoom() {
           <br />
           <span>PARALLAX PIXEL BACKGROUND</span>
         </div> */}
-        <div className="flex items-center justify-center min-h-screen">
+        <div className="flex items-center justify-center min-h-screen  mt-[-6rem]">
           <form onSubmit={handleEnter}>
             <Stack direction="column" spacing={2}>
               <TextField
@@ -74,10 +74,10 @@ export default function JoinRoom() {
                 onChange={handleChange}
               />
               <Button
-                variant="contained"
-                color="primary"
+                variant="outlined"
+                color="warning"
                 type="submit"
-                style={{ backgroundColor: "silver", color: "black" }}
+                // style={{ backgroundColor: "silver", color: "black" }}
               >
                 Enter
               </Button>

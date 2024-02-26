@@ -5,7 +5,7 @@ html {
 }
 
 
-#title {
+/* #title {
     position: absolute;
     top: 50%;
     left: 0;
@@ -24,7 +24,7 @@ html {
     background: -webkit-linear-gradient(white, #38495a);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
+} */
 
 #stars {
     width: 1px;
