@@ -32,29 +32,28 @@ export default function App() {
 
   return (
     <>
-    {isLoading?<div><AnimationLoading/></div>:
-   
-      <>
-          <div>
-            {shouldRenderNavbar && <NavBar />}
-          </div>
+      {isLoading ? (
+        <div>
+          <AnimationLoading />
+        </div>
+      ) : (
+        <>
+          <div>{shouldRenderNavbar && <NavBar />}</div>
           <SocketProvider>
-          <Routes>
-         
-            <Route path="/" element={<Home />} />
+            <Routes>
+              <Route path="/" element={<Home />} />
               <Route path="/chat" element={<Layout />} />
               <Route path="/sign-in" element={<Login />} />
               <Route path="/join-room" element={<JoinRoom />} />
+              {/* <Route path="/contact-us" element={<Test />} /> */}
               <Route path="/chat/:userName/:roomId" element={<Room />} />
-            <Route path="*" element={<PageNotFound />} />
-           
-          </Routes>
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
           </SocketProvider>
-      {/* <Layout /> */}
-{/* <AnimationTest/> */}
+          {/* <Layout /> */}
+          {/* <AnimationTest/> */}
         </>
-     
-}
+      )}
     </>
-  )
+  );
 }

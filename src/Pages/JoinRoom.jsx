@@ -1,59 +1,90 @@
-import { Button, Stack, TextField } from '@mui/material'
-import React,{useState} from 'react'
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import "./stars.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button, TextField, Stack } from "@mui/material";
 export default function JoinRoom() {
-    const navigate=useNavigate();
-    const [formData,setFormData]=useState({
-        userName:'',
-        roomId:''
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    userName: "",
+    roomId: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
     });
-    const handleChange=async(e)=>{
-        const {name,value}=e.target;
-        setFormData({
-            ...formData,
-            [name]:value,
-        })
-    }
-    const handleEnter=async(e)=>{
- e.preventDefault();
-//  alert(formData.roomId);
-navigate(`/chat/${formData.userName}/${formData.roomId}`);
-    }
-    
+  };
+
+  const handleEnter = (e) => {
+    e.preventDefault();
+    navigate(`/chat/${formData.userName}/${formData.roomId}`);
+  };
+
   return (
     <div>
-      <div className="flex justify-center items-center h-screen">
-        <form onSubmit={handleEnter}>
-          <Stack direction={"column"} spacing={1}>
-            <TextField
-              required
-              name="userName"
-              label="User Name"
-              value={formData.userName}
-              variant="outlined"
-              onChange={handleChange}
-            />
-            <br />
-            <TextField
-              required
-              name="roomId"
-              label="Room Id"
-              value={formData.roomId}
-              variant="outlined"
-              onChange={handleChange}
-            />
-            <br />
-            <Button
-              variant="contained"
-              color="warning"
-              type="submit"
-           
-            >
-              Enter
-            </Button>
-          </Stack>
-        </form>
-      </div>
+      <section class="wrapper">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+        {/* <div id="title">
+          <span>PURE CSS</span>
+          <br />
+          <span>PARALLAX PIXEL BACKGROUND</span>
+        </div> */}
+        <div className="flex items-center justify-center min-h-screen">
+          <form onSubmit={handleEnter}>
+            <Stack direction="column" spacing={2}>
+              <TextField
+                required
+                name="userName"
+                label="User Name"
+                value={formData.userName}
+                variant="outlined"
+                InputProps={{
+                  style: {
+                    color: "white",
+                  },
+                }}
+                InputLabelProps={{
+                  style: {
+                    color: "white",
+                  },
+                }}
+                onChange={handleChange}
+              />
+              <TextField
+                required
+                name="roomId"
+                label="Room Id"
+                value={formData.roomId}
+                variant="outlined"
+                InputProps={{
+                  style: {
+                    color: "white",
+                  },
+                }}
+                InputLabelProps={{
+                  style: {
+                    color: "white",
+                  },
+                }}
+                onChange={handleChange}
+              />
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                style={{ backgroundColor: "silver", color: "black" }}
+              >
+                Enter
+              </Button>
+            </Stack>
+          </form>
+        </div>
+      </section>
     </div>
   );
 }
