@@ -5,16 +5,16 @@ html {
 }
 
 
-/* #title {
+#title {
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 0;
     right: 0;
     color: #fff;
     text-align: center;
     font-family: Lato;
     font-weight: 300;
-    font-size: 50px;
+    font-size: 5vh;
     letter-spacing: 10px;
     margin-top: -60px;
     padding-left: 10px;
@@ -24,8 +24,14 @@ html {
     background: -webkit-linear-gradient(white, #38495a);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-} */
+}
 
+@media (max-width:1050px){
+
+   #title{
+    display:none
+   }
+}
 #stars {
     width: 1px;
     height: 1px;

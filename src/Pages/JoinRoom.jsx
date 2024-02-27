@@ -1,10 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./stars.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, TextField, Stack } from "@mui/material";
+import { useSocket } from "../Providers/Socket";
+import { useCallback } from "react";
 export default function JoinRoom() {
+  const {socket}=useSocket();
   const navigate = useNavigate();
+
+//  const handleJoinedRoom = async (data) => {
+//    navigate(`/chat/${data.userName}/${data.roomId}`);
+//  };
+  const handleJoinedRoom = useCallback(
+    async (data) => {
+    
+      navigate(`/chat/${data.userName}/${data.roomId}`);
+    },
+    [navigate]
+  );
+
+useEffect(()=>{
+ 
+socket.on("joined-room",handleJoinedRoom);
+  return () => {
+    // Clean up the event listener when the component unmounts
+    socket.off("joined-room", handleJoinedRoom);
+  };
+
+},[socket,handleJoinedRoom])
+
+
+
+
+
   const [formData, setFormData] = useState({
     userName: "",
     roomId: "",
@@ -20,21 +49,24 @@ export default function JoinRoom() {
 
   const handleEnter = (e) => {
     e.preventDefault();
-    navigate(`/chat/${formData.userName}/${formData.roomId}`);
+      socket.emit("join-room", { roomId:formData.roomId, userName: formData.userName });
+    // navigate(`/chat/${formData.userName}/${formData.roomId}`);
   };
 
   return (
     <div>
-      <section class="wrapper">
+      <section className="wrapper">
         <div id="stars"></div>
         <div id="stars2"></div>
         <div id="stars3"></div>
-        {/* <div id="title">
-          <span>PURE CSS</span>
+        <div id="title">
+          <span>
+            HELLO <span className="font-bold">GUEST,</span>
+          </span>
           <br />
-          <span>PARALLAX PIXEL BACKGROUND</span>
-        </div> */}
-        <div className="flex items-center justify-center min-h-screen  mt-[-6rem]">
+          <span>CHOOSE A USERNAME AND JOIN THE ROOM</span>
+        </div>
+        <div className="flex items-center justify-center min-h-screen  mt-[-2rem]">
           <form onSubmit={handleEnter}>
             <Stack direction="column" spacing={2}>
               <TextField

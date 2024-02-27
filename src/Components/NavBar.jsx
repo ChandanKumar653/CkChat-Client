@@ -41,7 +41,7 @@ export default function NavBar() {
         <nav className="bg-[#0e0e0f] w-full py-2 justify-between items-center navbar">
           {/* <img src={img} alt="logo" className=" w-[50px] h-[35px] m-2"/> */}
 
-          <ul className="list-none lg:flex hidden  justify-end items-center flex-1">
+          <ul className="list-none md:flex hidden  justify-end items-center flex-1">
             <>
               <li className="mr-auto text-white text-[28px] font-bold shadow-2xl cursor-pointer animate-bounce w-6 h-8 custom-3d-text">
                 <div>
