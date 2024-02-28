@@ -5,7 +5,8 @@ const Test = () => {
   const [messages, setMessages] = useState([]);
   const [myMessages, setMyMessages] = useState([]);
   const [input, setInput] = useState("");
-  const socket = io("http://localhost:3001"); // Use your server URL here
+  // const socket = io("http://localhost:3001"); // Use your server URL here
+  const socket = io("https://ckchat-server.onrender.com/");
 
   useEffect(() => {
     // Receive messages from the server
