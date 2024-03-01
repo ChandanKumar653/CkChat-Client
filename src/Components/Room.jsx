@@ -3,6 +3,7 @@ import { useSocket } from '../Providers/Socket';
 import { useParams } from 'react-router-dom';
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import UserList from './UserList';
 export default function Room() {
   
     const {socket}=useSocket();
@@ -11,8 +12,8 @@ export default function Room() {
    const [allMessage, setAllMessage] = useState([]);
 
     const handleRoomJoined=(data)=>{
-        const {userName}=data;
-    console.log("new user ",userName,"joined");
+        // const {userName}=data;
+    // console.log("new user ",userName,"joined");
     toast.success(`${data.userName} has joined the room`);
   
     }
@@ -34,7 +35,7 @@ useEffect(() => {
    if (socket) {
      // Receive messages from the server
      socket.on("room-message", (data) => {
-       // console.log("room-message");
+      //  console.log("room-message",data);
        // if(data.userName!==userName)
        setAllMessage((prevMessages) => [...prevMessages, data]);
      });
@@ -114,55 +115,64 @@ if(message===''){
 
 // console.log("allMessage",allMessage);
   return (
-    <div>
-      <div className="pl-12 text-white">
-        {allMessage?.map((item, index) => (
-          <div key={index} style={{marginLeft:item.userName===userName?"0":"80vw"}}>
-            <p>{item.message}</p>
-            <p>By: {item.userName === userName ? "Me" : item.userName}</p>
-            <br />
-          </div>
-        ))}
+    <>
+      <div className="flex">
+        <UserList roomId={roomId} />
+        <div className="pl-12 text-white ml-70 ">
+          {allMessage?.map((item, index) => (
+            <div
+              key={index}
+              style={{
+                marginLeft: item.userName === userName ? "250px" : "80vw",
+                backgroundColor: item.userName === userName ? "green" : "white",
+                padding: "5px",
+                maxWidth: "fit-content",
+                borderRadius: "15px",
+                marginBottom: "8px",
+                color:item.userName===userName?"white":"black"
+              }}
+            >
+              <p>{item.message}</p>
+              <p >By: {item.userName === userName ? "Me" : item.userName}</p>
+
+              <br />
+            </div>
+          ))}
+        </div>
+        <div className="flex items-center justify-center absolute bottom-10 w-full">
+          <form onSubmit={handleSubmit} className="flex">
+            <input
+              type="text"
+              name="message"
+              value={message}
+              onChange={(e) => {
+                setMessage(e.target.value);
+              }}
+              className="bg-gray-300 h-10 px-4 rounded-l-lg focus:outline-none"
+            />
+            <button
+              type="submit"
+              className="bg-blue-500 text-white px-4 py-2 rounded-r-lg"
+            >
+              Send
+            </button>
+          </form>
+        </div>
+
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+          // transition: "Bounce"
+        />
       </div>
-      <div className="flex items-center justify-center absolute bottom-10 w-full">
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="message"
-            value={message}
-            onChange={(e) => {
-              setMessage(e.target.value);
-            }}
-            style={{ backgroundColor: "grey", height: "3vh" }}
-          />
-          <button
-            type="submit"
-            style={{
-              backgroundColor: "blue",
-              border: "1px solid blue",
-              borderRadius: "40px",
-              fontSize: "40px",
-              padding: "3px",
-              color: "white",
-            }}
-          >
-            Send
-          </button>
-        </form>
-      </div>
-   <ToastContainer
-position="top-right"
-autoClose={3000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-theme="dark"
-// transition: "Bounce"
-/>
-    </div>
+    </>
   );
 }
