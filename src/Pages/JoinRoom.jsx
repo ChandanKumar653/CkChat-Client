@@ -6,33 +6,30 @@ import { Button, TextField, Stack } from "@mui/material";
 import { useSocket } from "../Providers/Socket";
 import { useCallback } from "react";
 export default function JoinRoom() {
-  const {socket}=useSocket();
+  const { socket } = useSocket();
   const navigate = useNavigate();
 
-//  const handleJoinedRoom = async (data) => {
-//    navigate(`/chat/${data.userName}/${data.roomId}`);
-//  };
+  //  const handleJoinedRoom = async (data) => {
+  //    navigate(`/chat/${data.userName}/${data.roomId}`);
+  //  };
+
+  
   const handleJoinedRoom = useCallback(
     async (data) => {
-    
       navigate(`/chat/${data.userName}/${data.roomId}`);
     },
     [navigate]
   );
 
-useEffect(()=>{
- 
-socket.on("joined-room",handleJoinedRoom);
-  return () => {
-    // Clean up the event listener when the component unmounts
-    socket.off("joined-room", handleJoinedRoom);
-  };
-
-},[socket,handleJoinedRoom])
 
 
-
-
+  useEffect(() => {
+    socket.on("joined-room", handleJoinedRoom);
+    return () => {
+      // Clean up the event listener when the component unmounts
+      socket.off("joined-room", handleJoinedRoom);
+    };
+  }, [socket, handleJoinedRoom]);
 
   const [formData, setFormData] = useState({
     userName: "",
@@ -49,7 +46,10 @@ socket.on("joined-room",handleJoinedRoom);
 
   const handleEnter = (e) => {
     e.preventDefault();
-      socket.emit("join-room", { roomId:formData.roomId, userName: formData.userName });
+    socket.emit("join-room", {
+      roomId: formData.roomId,
+      userName: formData.userName,
+    });
     // navigate(`/chat/${formData.userName}/${formData.roomId}`);
   };
 

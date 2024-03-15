@@ -13,11 +13,11 @@ export default function UserList(props) {
         roomId: props.roomId,
       };
       try {
-        // const res = await axios.post("http://localhost:3001/getUsers", body, {
-        const res = await axios.post(
-          "https://ckchat-server.onrender.com/getUsers",
-          body,
-          {
+        const res = await axios.post("http://localhost:3001/getUsers", body, {
+        // const res = await axios.post(
+        //   "https://ckchat-server.onrender.com/getUsers",
+        //   body,
+          // {
             headers: {
               Authorization:
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiQ2tDaGF0IiwiaWF0IjoxNzA5MTM1OTQwfQ.i7p3Qlsxlkwp-LxZGkeetOHJ_98Ial9SQuQXk5YV72o",
@@ -48,7 +48,7 @@ export default function UserList(props) {
       <div className="h-fullflex flex-start absolute left-0 w-[200px]">
         <div className="h-full w-60 bg-gray-900 overflow-y-auto rounded-lg shadow-lg">
           <div className="bg-blue-900 text-white py-3 px-4 rounded-t-lg">
-            <h2 className="text-lg font-semibold">User(s) in this room: </h2>
+            <h2 className="text-lg font-semibold">User(s) in room: {props.roomId} </h2>
           </div>
           <div className="divide-y divide-gray-700">
             {data?.map((item, index) => (

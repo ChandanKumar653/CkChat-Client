@@ -10,6 +10,9 @@ import JoinRoom from './Pages/JoinRoom';
 import Room from './Components/Room';
 import { SocketProvider } from './Providers/Socket';
 import Login from './Components/Login/Login';
+import { PeerProvider } from './Providers/Peer';
+// import Test1 from './Components/Test1';
+import Testimonials from './Components/Testimonials/Testimonials';
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -24,11 +27,14 @@ export default function App() {
   const location = useLocation();
 
   // Define the paths where Navbar should not be rendered
-  const navbarExcludedPaths = ['/chat', '/testkfkd']; // Change these to your desired paths
+  const navbarExcludedPaths = ["/chat", "/chat/:userName/:roomId"]; // Change these to your desired paths
 
   // Check if the current path matches any excluded path
-  const shouldRenderNavbar = !navbarExcludedPaths.includes(location.pathname);
-
+  // const shouldRenderNavbar = !navbarExcludedPaths.includes(location.pathname);
+const shouldRenderNavbar = navbarExcludedPaths.every((path) => {
+  const regex = new RegExp("^" + path.replace(/:[^\s/]+/g, "[^\\s/]+") + "$");
+  return !regex.test(location.pathname);
+});
 
   return (
     <>
@@ -39,17 +45,38 @@ export default function App() {
       ) : (
         <>
           <div>{shouldRenderNavbar && <NavBar />}</div>
-          <SocketProvider>
+          <PeerProvider>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/chat" element={<Layout />} />
+              <Route path="/test" element={<Testimonials />} />
               <Route path="/sign-in" element={<Login />} />
+              {/* <SocketProvider>
               <Route path="/join-room" element={<JoinRoom />} />
-              {/* <Route path="/contact-us" element={<Test />} /> */}
               <Route path="/chat/:userName/:roomId" element={<Room />} />
+            </SocketProvider> */}
+
+              <Route
+                path="/join-room"
+                element={
+                  <SocketProvider>
+                    <JoinRoom />
+                  </SocketProvider>
+                }
+              />
+
+              <Route
+                path="/chat/:userName/:roomId"
+                element={
+                  <SocketProvider>
+                    <Room />
+                  </SocketProvider>
+                }
+              />
+
               <Route path="*" element={<PageNotFound />} />
             </Routes>
-          </SocketProvider>
+          </PeerProvider>
           {/* <Layout /> */}
           {/* <AnimationTest/> */}
         </>

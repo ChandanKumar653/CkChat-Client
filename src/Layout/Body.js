@@ -53,16 +53,16 @@ export default function Body() {
     useEffect(() => {
         // Create a new socket connection when the component mounts
         // const newSocket = io('https://ckchat-server.onrender.com/'); // Replace 'your_server_url_here' with your actual server URL
-        const newSocket = io('https://ckchat-server.onrender.com/', {
-            auth: {
-                token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiQ2tDaGF0IiwiaWF0IjoxNzAzODU5MzE0fQ.Da4q9bPn4sa0B4sGq6TLy3k5ZqW4mBzifGPjHIx8E-g",
-            },
-        });
-        // const newSocket = io('http://localhost:3001', {
+        // const newSocket = io('https://ckchat-server.onrender.com/', {
         //     auth: {
         //         token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiQ2tDaGF0IiwiaWF0IjoxNzAzODU5MzE0fQ.Da4q9bPn4sa0B4sGq6TLy3k5ZqW4mBzifGPjHIx8E-g",
         //     },
         // });
+        const newSocket = io('http://localhost:3001', {
+            auth: {
+                token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiQ2tDaGF0IiwiaWF0IjoxNzAzODU5MzE0fQ.Da4q9bPn4sa0B4sGq6TLy3k5ZqW4mBzifGPjHIx8E-g",
+            },
+        });
         setSocket(newSocket);
 
 // const newSocket=socket;
