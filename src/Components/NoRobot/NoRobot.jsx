@@ -2,13 +2,13 @@ import React from "react";
 import Lottie from "lottie-react";
 import animation from "../../Assets/Animations/A8.json";
 import { useNavigate } from "react-router-dom";
-import { useMediaQuery } from "@mui/material";
+// import { useMediaQuery } from "@mui/material";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 // import animation5 from "../../Assets/Animations/Animation - 1707885614247.json";
 
 export default function NoRobot() {
   const navigate = useNavigate();
-  const isMobile = useMediaQuery("(max-width:600px)");
+  // const isMobile = useMediaQuery("(max-width:600px)");
   return (
     <>
       <div
