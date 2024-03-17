@@ -2,9 +2,9 @@ import React from "react";
 import Lottie from "lottie-react";
 // import animation2 from "../../Assets/Animations/Animation2.json";
 import animation2 from "../../Assets/Animations/Animation - 1707885614247.json";
-import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+// import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
-import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
+// import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
 
