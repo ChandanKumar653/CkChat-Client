@@ -45,7 +45,7 @@ export default function MobileInfo() {
             </div> */}
             <br />
             <div className="w-full flex justify-center items-center md:justify-start">
-              <div className="font-bold md:text-[50px] text-[30px] font-serif text-center md:text-left">
+              <div className="font-bold md:text-[50px] text-[30px] font-serif text-left p-4 md:p-0">
                 <span className="text-white">Introducing </span>
                 <br />
                 <span className="text-white">Mobile</span>
@@ -55,7 +55,7 @@ export default function MobileInfo() {
               </div>
             </div>
             <br />
-            <div className="text-white w-full flex items-center justify-center md:justify-start text-center p-4 md:p-0 md:text-left">
+            <div className="text-white w-full flex items-center justify-center md:justify-start text-left  p-4 md:p-0 ">
               <p>
                 Our web chat app is now fully optimized for mobile devices,
                 ensuring you stay connected wherever you are. Connect, chat, and
@@ -65,10 +65,10 @@ export default function MobileInfo() {
             <br />
             <div
               className="flex items-center"
-              style={{ justifyContent: isMobile ? "center" : "start" }}
+              style={{ justifyContent: "start" }}
             >
               <div
-                className="flex items-center"
+                className="flex items-center m-4 md:m-0"
                 style={{
                   background: "linear-gradient(135deg, #D0312D, #FF5733)",
                   border: "1px solid #D0312D",
