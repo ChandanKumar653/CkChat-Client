@@ -13,6 +13,7 @@ import Login from './Components/Login/Login';
 import { PeerProvider } from './Providers/Peer';
 // import Test1 from './Components/Test1';
 import Testimonials from './Components/Testimonials/Testimonials';
+import Footer from './Components/Footer/Footer';
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -45,6 +46,7 @@ const shouldRenderNavbar = navbarExcludedPaths.every((path) => {
       ) : (
         <>
           <div>{shouldRenderNavbar && <NavBar />}</div>
+
           <PeerProvider>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -79,6 +81,7 @@ const shouldRenderNavbar = navbarExcludedPaths.every((path) => {
           </PeerProvider>
           {/* <Layout /> */}
           {/* <AnimationTest/> */}
+          <div>{shouldRenderNavbar && <Footer />}</div>
         </>
       )}
     </>

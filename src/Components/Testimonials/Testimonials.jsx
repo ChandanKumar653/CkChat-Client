@@ -30,14 +30,28 @@ const Testimonials = () => {
    
   ];
 
+
+
+  
   return (
-    <div className="bg-[#0e0e0f] ">
+    <div className="bg-[#0e0e0f] mt-0.5">
       <div className="container mx-auto ">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-7 lg:gap-15">
           {testimonialData.map((item, index) => (
             <div
               key={index}
-              className="bg-opacity-10 bg-[#0e0e0f] p-4 rounded-lg shadow-md hover:shadow-lg transition duration-300 backdrop-filter backdrop-blur-lg bg-gradient-to-b from-gray-800 to-gray-900"
+              style={{
+                // position: "relative",
+               
+                background: "transparent",
+                border: "2px solid rgba(255,255,255,.5)",
+                borderRadius: "20px",
+                // display: "flex",
+                // justifyContent: "center",
+                // alignItems: "center",
+                backdropFilter: "blur(15px)",
+              }}
+              className=" hover:animate-bounce bg-opacity-0.9 bg-[#0e0e0f] p-4 rounded-lg shadow-md hover:shadow-lg transition duration-300 backdrop-filter backdrop-blur-lg bg-gradient-to-b from-gray-700 to-gray-800 hover:scale-105"
             >
               <img
                 src={item.profileImage}

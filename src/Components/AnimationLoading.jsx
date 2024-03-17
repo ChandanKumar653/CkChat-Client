@@ -5,6 +5,7 @@ import animation1 from "../Assets/Animations/A9.json";
 // import animation2 from "../Assets/Animations/A4.json";
 import animation3 from "../Assets/Animations/A5.json";
 import animation4 from "../Assets/Animations/A6.json";
+ import animation5 from "../Assets/Animations/Animation - 1707885614247.json";
 
 export default function AnimationLoading() {
   const animations = [
@@ -13,6 +14,7 @@ export default function AnimationLoading() {
     // animation2,
     animation3,
     animation4,
+animation5
   ];
 
   // Function to generate a random index

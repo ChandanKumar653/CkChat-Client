@@ -11,7 +11,7 @@ import { usePeer } from '../Providers/Peer';
 export default function Room() {
   const navigate = useNavigate();
   const { socket } = useSocket();
-  const {peer,createOffer}=usePeer();
+  const {createOffer}=usePeer();
   const { roomId, userName } = useParams();
   const [message, setMessage] = useState("");
   const [allMessage, setAllMessage] = useState([]);
@@ -137,16 +137,16 @@ socket.on("incomming-call",handleIncommingCall);
       <div className="flex">
         <UserList roomId={roomId} />
 
-        {/* <div className="mt-[10%] ml-[30%]"> */}
+        <div className="mt-[10%] ml-[30%]">
           <Button variant="outlined" color="warning" onClick={handleCall}>
             Call
           </Button>
-          {/* <br />
+          <br />
           <br />
           <Button variant="outlined" color="warning" onClick={handleLeaveRoom}>
             Leave Room
-          </Button> */}
-        {/* </div> */}
+          </Button>
+        </div>
         <div>
           {myStream && (
             <ReactPlayer

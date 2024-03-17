@@ -104,7 +104,7 @@ export default function NavBar() {
               // style={{backgroundColor:"grey"}}
               className={`${
                 toggle ? "flex" : "hidden"
-              } p-6 bg-white bg-opacity-25 absolute shadow-2xl top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}
+              } p-6 bg-[silver] bg-opacity-95 absolute shadow-2xl top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}
             >
               <ul className="list-none flex flex-col  justify-end items-center flex-1">
                 <>
@@ -114,7 +114,7 @@ export default function NavBar() {
                         setToggle((prev) => !prev);
                       }}
                       key={index}
-                      className={`font-poppins font-normal cursor-pointer text-[20px] text-white ${
+                      className={`font-poppins font-normal cursor-pointer text-[20px] text-black ${
                         index === data.length - 1 ? "mr-0" : "mb-2"
                       }`}
                     >
