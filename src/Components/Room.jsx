@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState,useRef } from 'react'
 import { useSocket } from '../Providers/Socket';
 import { useParams } from 'react-router-dom';
 import { toast, ToastContainer } from "react-toastify";
@@ -132,20 +132,26 @@ socket.on("incomming-call",handleIncommingCall);
   }, []);
 
   // console.log("allMessage",allMessage);
+const containerRef = useRef(null);
+useEffect(() => {
+  if (containerRef.current) {
+    containerRef.current.scrollTop = containerRef.current.scrollHeight;
+  }
+}, [allMessage]);
   return (
     <>
-      <div className="flex">
-        <UserList roomId={roomId} />
+      <div className="flex h-screen">
+        <div className="hidden md:flex">
+          <UserList roomId={roomId} />
+        </div>
 
-        <div className="mt-[10%] ml-[30%]">
+        <div className="hidden" >
           <Button variant="outlined" color="warning" onClick={handleCall}>
             Call
           </Button>
           <br />
           <br />
-          <Button variant="outlined" color="warning" onClick={handleLeaveRoom}>
-            Leave Room
-          </Button>
+        
         </div>
         <div>
           {myStream && (
@@ -163,8 +169,11 @@ socket.on("incomming-call",handleIncommingCall);
           )}
         </div>
 
-        <div className="pl-12 text-white ml-70 ">
-          {allMessage?.map((item, index) => (
+        <div
+          ref={containerRef}
+          className="p-4 md:p-12 text-white mx-auto mb-16 md:ml-80 overflow-y-auto w-full"
+        >
+          {/* {allMessage?.map((item, index) => (
             <div
               key={index}
               style={{
@@ -182,9 +191,41 @@ socket.on("incomming-call",handleIncommingCall);
 
               <br />
             </div>
+          ))} */}
+
+          {allMessage?.map((item, index) => (
+            <div
+              key={index}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems:
+                  item.userName === userName ? "flex-end" : "flex-start",
+                marginBottom: "8px",
+              }}
+            >
+              <div
+                style={{
+                  backgroundColor:
+                    item.userName === userName ? "#DCF8C6" : "#3B3B3B", // Adjusted background color for other users' messages
+                  color: item.userName === userName ? "#000000" : "#FFFFFF", // Adjusted text color for better visibility
+                  padding: "10px",
+                  borderRadius: "10px",
+                  // maxWidth: "70%",
+                }}
+              >
+                <p style={{ margin: 0 }}>{item.message}</p>
+              </div>
+              <p
+                style={{ margin: "5px", fontSize: "0.8rem", color: "#888888" }}
+              >
+                {item.userName === userName ? "You" : item.userName}
+              </p>
+            </div>
           ))}
         </div>
-        <div className="flex items-center justify-center absolute bottom-10 w-full">
+
+        <div className="flex items-center justify-center absolute bottom-10 w-full ">
           <form onSubmit={handleSubmit} className="flex">
             <input
               type="text"
@@ -193,7 +234,7 @@ socket.on("incomming-call",handleIncommingCall);
               onChange={(e) => {
                 setMessage(e.target.value);
               }}
-              className="bg-gray-300 h-10 px-4 rounded-l-lg focus:outline-none"
+              className="bg-gray-300 h-10 rounded-l-lg focus:outline-none w-[7rem] md:w-auto"
             />
             <button
               type="submit"
@@ -202,6 +243,10 @@ socket.on("incomming-call",handleIncommingCall);
               Send
             </button>
           </form>
+          &nbsp;&nbsp;
+          <Button variant="outlined" color="warning" onClick={handleLeaveRoom}>
+            Leave
+          </Button>
         </div>
 
         <ToastContainer

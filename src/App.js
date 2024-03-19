@@ -14,6 +14,7 @@ import { PeerProvider } from './Providers/Peer';
 // import Test1 from './Components/Test1';
 import Testimonials from './Components/Testimonials/Testimonials';
 import Footer from './Components/Footer/Footer';
+import RoomTest from './Components/RoomTest';
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -28,7 +29,7 @@ export default function App() {
   const location = useLocation();
 
   // Define the paths where Navbar should not be rendered
-  const navbarExcludedPaths = ["/chat", "/chat/:userName/:roomId"]; // Change these to your desired paths
+  const navbarExcludedPaths = ["/chat", "/chat/:userName/:roomId","/room-test"]; // Change these to your desired paths
 
   // Check if the current path matches any excluded path
   // const shouldRenderNavbar = !navbarExcludedPaths.includes(location.pathname);
@@ -53,6 +54,7 @@ const shouldRenderNavbar = navbarExcludedPaths.every((path) => {
               <Route path="/chat" element={<Layout />} />
               <Route path="/test" element={<Testimonials />} />
               <Route path="/sign-in" element={<Login />} />
+              <Route path="/room-test" element={<RoomTest />} />
               {/* <SocketProvider>
               <Route path="/join-room" element={<JoinRoom />} />
               <Route path="/chat/:userName/:roomId" element={<Room />} />
