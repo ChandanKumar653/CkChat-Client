@@ -15,6 +15,8 @@ import { PeerProvider } from './Providers/Peer';
 import Testimonials from './Components/Testimonials/Testimonials';
 import Footer from './Components/Footer/Footer';
 import RoomTest from './Components/RoomTest';
+import ReCAPTCHA from "react-google-recaptcha";
+import axios from 'axios';
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -38,53 +40,95 @@ const shouldRenderNavbar = navbarExcludedPaths.every((path) => {
   return !regex.test(location.pathname);
 });
 
+const [captchaVerified,setCaptchaVerified]=useState(false);
+ const onRecaptchaChange = async(value) => {
+  
+  //  console.log(value);
+   if (value) {
+     // send to backend for validation
+     let body = {
+       reCarecaptchaToken:value
+     };
+     try{
+    //  const res = await axios.post("http://localhost:3001/verifyCaptcha", body);
+     const res = await axios.post(
+       "https://ckchat-server.onrender.com//verifyCaptcha",
+       body
+     );
+        // console.log(res);
+        if(res.status===200){
+          setCaptchaVerified(true);
+        }
+     }catch(e){
+console.log("Error verifying captcha:",e);
+     }
+   }
+ };
+
+
+
+
+
   return (
     <>
-      {isLoading ? (
-        <div>
-          <AnimationLoading />
-        </div>
-      ) : (
+      {captchaVerified ? (
         <>
-          <div>{shouldRenderNavbar && <NavBar />}</div>
+          {isLoading ? (
+            <div>
+              <AnimationLoading />
+            </div>
+          ) : (
+            <>
+              <div>{shouldRenderNavbar && <NavBar />}</div>
 
-          <PeerProvider>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/chat" element={<Layout />} />
-              <Route path="/test" element={<Testimonials />} />
-              <Route path="/sign-in" element={<Login />} />
-              <Route path="/room-test" element={<RoomTest />} />
-              {/* <SocketProvider>
+              <PeerProvider>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/chat" element={<Layout />} />
+                  <Route path="/test" element={<Testimonials />} />
+                  <Route path="/sign-in" element={<Login />} />
+                  <Route path="/room-test" element={<RoomTest />} />
+                  {/* <SocketProvider>
               <Route path="/join-room" element={<JoinRoom />} />
               <Route path="/chat/:userName/:roomId" element={<Room />} />
             </SocketProvider> */}
 
-              <Route
-                path="/join-room"
-                element={
-                  <SocketProvider>
-                    <JoinRoom />
-                  </SocketProvider>
-                }
-              />
+                  <Route
+                    path="/join-room"
+                    element={
+                      <SocketProvider>
+                        <JoinRoom />
+                      </SocketProvider>
+                    }
+                  />
 
-              <Route
-                path="/chat/:userName/:roomId"
-                element={
-                  <SocketProvider>
-                    <Room />
-                  </SocketProvider>
-                }
-              />
+                  <Route
+                    path="/chat/:userName/:roomId"
+                    element={
+                      <SocketProvider>
+                        <Room />
+                      </SocketProvider>
+                    }
+                  />
 
-              <Route path="*" element={<PageNotFound />} />
-            </Routes>
-          </PeerProvider>
-          {/* <Layout /> */}
-          {/* <AnimationTest/> */}
-          <div>{shouldRenderNavbar && <Footer />}</div>
+                  <Route path="*" element={<PageNotFound />} />
+                </Routes>
+              </PeerProvider>
+              {/* <Layout /> */}
+              {/* <AnimationTest/> */}
+              <div>{shouldRenderNavbar && <Footer />}</div>
+            </>
+          )}
         </>
+      ) : (
+        <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+          <form>
+            <ReCAPTCHA
+              sitekey="6Ldj98YpAAAAAJ8TS2oNi5_hagHXJQwoMewoJ9Po"
+              onChange={onRecaptchaChange}
+            />
+          </form>
+        </div>
       )}
     </>
   );
