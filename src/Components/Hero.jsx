@@ -28,7 +28,7 @@ export default function Hero() {
 
   return (
     <div className="bg-[#0e0e0f] w-full overflow-hidden pt-2  ">
-      <div className="bg-[#0e0e0f]  h-[85vh]" >
+      <div className="bg-[#0e0e0f]  h-[100%]" >
         <div className="block md:flex">
           <div>
             <br /> <br />
