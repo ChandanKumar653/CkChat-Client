@@ -52,7 +52,7 @@ const [captchaVerified,setCaptchaVerified]=useState(false);
      try{
     //  const res = await axios.post("http://localhost:3001/verifyCaptcha", body);
      const res = await axios.post(
-       "https://ckchat-server.onrender.com//verifyCaptcha",
+       "https://ckchat-server.onrender.com/verifyCaptcha",
        body
      );
         // console.log(res);
