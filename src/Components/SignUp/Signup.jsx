@@ -4,10 +4,14 @@ import MailIcon from "@mui/icons-material/Mail";
 import LockIcon from "@mui/icons-material/Lock";
 import PersonIcon from "@mui/icons-material/Person";
 import Swal from "sweetalert2";
+import {useSelector,  useDispatch } from "react-redux";
+import { registerUser } from "../../Redux/Slices/AuthSlice";
+
 import { useNavigate } from "react-router-dom";
+import { LinearProgress } from "@mui/material";
 export default function Signup() {
     const navigate=useNavigate();
-
+   const dispatch=useDispatch();
  const [formData, setFormData] = useState({
     name:"",
    email: "",
@@ -27,7 +31,7 @@ export default function Signup() {
         const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}$/;
         return regex.test(password);
       };
- const handleSubmit = (event) => {
+ const handleSubmit =async (event) => {
    event.preventDefault();
 
 
@@ -42,8 +46,26 @@ export default function Signup() {
    }
 
    // Proceed with form submission or other actions...
+   dispatch(registerUser(formData));
  };
+const res = useSelector((state) => state.auth);
+console.log(res);
+if(res.signup.status==="error"){
+   Swal.fire(
+     "Oops!",
+     `Error signing up!! ${res.signup.error}`,
+     "error"
+   );
+  
+}
+if (res.signup.status === "success") {
+  Swal.fire(
+    "Success!",
+    "A verification link is sent to your email, verify it to proceed further.",
+    "success"
+  );
 
+}
   return (
     <section className="main">
       <div className="login-box">
@@ -96,7 +118,12 @@ export default function Signup() {
             </label>
             <p className="fp">Forgot Password</p>
           </div> */}
-          <button type="submit">Sign Up</button>
+          {res?.signup?.status === "loading" ? (
+            <div><LinearProgress/></div>
+          ) : (
+            <button type="submit">Sign Up</button>
+          )}
+
           <div className="register-link">
             <p>
               Already have an account?{" "}
