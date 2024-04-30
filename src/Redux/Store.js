@@ -1,7 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import TestReducer from "./Slices/TestSlice";
+import apiReducer from "./Slices/ApiSlice";
+import TestSlice from "./Slices/TestSlice";
 export const store = configureStore({
   reducer: {
-    counter: TestReducer,
+    api: apiReducer,
+    counter:TestSlice
   },
 });

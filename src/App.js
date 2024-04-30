@@ -12,11 +12,13 @@ import { SocketProvider } from './Providers/Socket';
 import Login from './Components/Login/Login';
 import { PeerProvider } from './Providers/Peer';
 // import Test1 from './Components/Test1';
-import Testimonials from './Components/Testimonials/Testimonials';
+// import Testimonials from './Components/Testimonials/Testimonials';
 import Footer from './Components/Footer/Footer';
 import RoomTest from './Components/RoomTest';
 import ReCAPTCHA from "react-google-recaptcha";
 import axios from 'axios';
+import TestRedux from './Components/Test/TestRedux';
+import Signup from './Components/SignUp/Signup';
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -40,7 +42,7 @@ const shouldRenderNavbar = navbarExcludedPaths.every((path) => {
   return !regex.test(location.pathname);
 });
 
-const [captchaVerified,setCaptchaVerified]=useState(false);
+const [captchaVerified,setCaptchaVerified]=useState(true);
  const onRecaptchaChange = async(value) => {
   
   //  console.log(value);
@@ -85,8 +87,9 @@ console.log("Error verifying captcha:",e);
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/chat" element={<Layout />} />
-                  <Route path="/test" element={<Testimonials />} />
+                  <Route path="/test" element={<TestRedux />} />
                   <Route path="/sign-in" element={<Login />} />
+                  <Route path="/sign-up" element={<Signup />} />
                   <Route path="/room-test" element={<RoomTest />} />
                   {/* <SocketProvider>
               <Route path="/join-room" element={<JoinRoom />} />
@@ -121,7 +124,13 @@ console.log("Error verifying captcha:",e);
           )}
         </>
       ) : (
-        <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <form>
             <ReCAPTCHA
               sitekey="6Ldj98YpAAAAAJ8TS2oNi5_hagHXJQwoMewoJ9Po"
