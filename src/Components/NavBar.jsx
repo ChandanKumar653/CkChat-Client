@@ -90,7 +90,7 @@ export default function NavBar() {
           </ul>
 
           <div className="md:hidden flex flex-1 justify-end items-center cursor-pointer">
-            <div className="md:hidden w-[28px] h-[28px] object-contain mr-auto font-bold">
+            <div className="md:hidden text-2xl object-contain mr-auto font-bold">
               {/* <img src={logo} alt="logo" className="" /> */}
               <span className="text-[red]">Ck</span>
               <span className="text-white">Chat</span>
