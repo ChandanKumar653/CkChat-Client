@@ -1,7 +1,9 @@
 import React,{useState} from "react";
 import "../Login/Login.css";
 import MailIcon from "@mui/icons-material/Mail";
-import LockIcon from "@mui/icons-material/Lock";
+// import LockIcon from "@mui/icons-material/Lock";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import PersonIcon from "@mui/icons-material/Person";
 import Swal from "sweetalert2";
 import {useSelector,  useDispatch } from "react-redux";
@@ -17,7 +19,10 @@ export default function Signup() {
    email: "",
    password: "",
  });
-
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
  const handleChange = (event) => {
    const { name, value } = event.target;
    setFormData({
@@ -59,12 +64,31 @@ if(res.signup.status==="error"){
   
 }
 if (res.signup.status === "success") {
+  // Show success message for form submission
   Swal.fire(
     "Success!",
-    "A verification link is sent to your email, verify it to proceed further.",
+    "Verification link sent!! Please check you email.",
     "success"
   );
 
+  // Return HTML to display a message about verification email
+  return (
+    <div className="flex items-center justify-center h-screen main">
+      <div className="bg-gradient-to-r from-purple-400 to-blue-500 rounded-lg shadow-lg w-full md:w-1/2 lg:w-1/3 m-4">
+        <div className="p-6 text-center">
+          <p className="text-white leading-normal">
+            Thank you for signing up! An email has been sent to{" "}
+            <strong>{formData.email}</strong> with a verification link. <br />
+            Please check your inbox and follow the instructions to verify your
+            account.
+          </p>
+          <p className="text-white mt-4 leading-normal">
+            Please note that the verification link will expire in 2 minutes.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 }
   return (
     <section className="main">
@@ -99,11 +123,15 @@ if (res.signup.status === "success") {
             <label>Email</label>
           </div>
           <div className="input-box">
-            <span className="icon">
-              <LockIcon />
+            <span
+              className="icon"
+              onClick={togglePasswordVisibility}
+              style={{ cursor: "pointer" }}
+            >
+              {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
             </span>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               value={formData.password}
               required
@@ -111,15 +139,11 @@ if (res.signup.status === "success") {
             />
             <label>Password</label>
           </div>
-          {/* <div className="remember-forgot">
-            <label>
-              <input type="checkbox" />
-              Remember me
-            </label>
-            <p className="fp">Forgot Password</p>
-          </div> */}
+
           {res?.signup?.status === "loading" ? (
-            <div><LinearProgress/></div>
+            <div>
+              <LinearProgress />
+            </div>
           ) : (
             <button type="submit">Sign Up</button>
           )}

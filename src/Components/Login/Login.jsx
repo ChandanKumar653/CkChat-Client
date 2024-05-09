@@ -1,7 +1,9 @@
 import React,{ useState} from 'react'
 import "./Login.css";
 import MailIcon from "@mui/icons-material/Mail";
-import LockIcon from "@mui/icons-material/Lock";
+// import LockIcon from "@mui/icons-material/Lock";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useNavigate } from 'react-router-dom';
 export default function Login() {
   const navigate=useNavigate();
@@ -19,7 +21,10 @@ export default function Login() {
      });
    };
   
- 
+   const [showPassword, setShowPassword] = useState(false);
+   const togglePasswordVisibility = () => {
+     setShowPassword(!showPassword);
+   };
 
 const handleSubmit=async(e)=>{
   e.preventDefault();
@@ -43,11 +48,15 @@ const handleSubmit=async(e)=>{
             <label>Email</label>
           </div>
           <div className="input-box">
-            <span className="icon">
-              <LockIcon />
+            <span
+              className="icon"
+              onClick={togglePasswordVisibility}
+              style={{ cursor: "pointer" }}
+            >
+              {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
             </span>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               required
               onChange={handleChange}

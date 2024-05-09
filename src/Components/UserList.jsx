@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSocket } from "../Providers/Socket";
 import Avatar from "@mui/material/Avatar";
-
+import { apiLink } from "../Constants";
 export default function UserList(props) {
   const { socket } = useSocket();
   const [data, setData] = useState(null);
@@ -13,7 +13,7 @@ export default function UserList(props) {
         roomId: props.roomId,
       };
       try {
-        const res = await axios.post("http://localhost:3001/getUsers", body, {
+        const res = await axios.post(`${apiLink}/getUsers`, body, {
         // const res = await axios.post(
         //   "https://ckchat-server.onrender.com/getUsers",
         //   body,

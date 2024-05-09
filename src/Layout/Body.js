@@ -15,6 +15,7 @@ import ShareCard from './ShareCard';
 import Invite from './Invite';
 import io from "socket.io-client";
 import Messages from './Messages';
+import { apiLink } from '../Constants';
 // import { useSocket } from '../Providers/Socket';
 // import { v4 as uuidv4 } from 'uuid';
 
@@ -53,7 +54,7 @@ export default function Body() {
     useEffect(() => {
         // Create a new socket connection when the component mounts
         // const newSocket = io('https://ckchat-server.onrender.com/'); // Replace 'your_server_url_here' with your actual server URL
-        const newSocket = io('https://ckchat-server.onrender.com/', {
+        const newSocket = io(apiLink, {
             auth: {
                 token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiQ2tDaGF0IiwiaWF0IjoxNzAzODU5MzE0fQ.Da4q9bPn4sa0B4sGq6TLy3k5ZqW4mBzifGPjHIx8E-g",
             },

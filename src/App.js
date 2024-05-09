@@ -19,13 +19,16 @@ import ReCAPTCHA from "react-google-recaptcha";
 import axios from 'axios';
 import TestRedux from './Components/Test/TestRedux';
 import Signup from './Components/SignUp/Signup';
+import { apiLink } from './Constants';
+import Verify from './Components/verifyUser/Verify';
+import PersonalChat from './Components/PersonalChat/index';
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // 5000 milliseconds = 5 seconds
+    }, 2000); 
 
     return () => clearTimeout(timer);
   }, []);
@@ -33,7 +36,12 @@ export default function App() {
   const location = useLocation();
 
   // Define the paths where Navbar should not be rendered
-  const navbarExcludedPaths = ["/chat", "/chat/:userName/:roomId","/room-test"]; // Change these to your desired paths
+  const navbarExcludedPaths = [
+    "/chat",
+    "/chat/:userName/:roomId",
+    "/room-test",
+    "/personal-chat",
+  ]; // Change these to your desired paths
 
   // Check if the current path matches any excluded path
   // const shouldRenderNavbar = !navbarExcludedPaths.includes(location.pathname);
@@ -54,7 +62,7 @@ const [captchaVerified,setCaptchaVerified]=useState(true);
      try{
     //  const res = await axios.post("http://localhost:3001/verifyCaptcha", body);
      const res = await axios.post(
-       "https://ckchat-server.onrender.com/verifyCaptcha",
+       `${apiLink}/verifyCaptcha`,
        body
      );
         // console.log(res);
@@ -90,7 +98,9 @@ console.log("Error verifying captcha:",e);
                   <Route path="/test" element={<TestRedux />} />
                   <Route path="/sign-in" element={<Login />} />
                   <Route path="/sign-up" element={<Signup />} />
+                  <Route path="/personal-chat" element={<PersonalChat />} />
                   <Route path="/room-test" element={<RoomTest />} />
+                  <Route path="/auth/:token" element={<Verify />} />
                   {/* <SocketProvider>
               <Route path="/join-room" element={<JoinRoom />} />
               <Route path="/chat/:userName/:roomId" element={<Room />} />

@@ -1,3 +1,5 @@
+const apiLink = "http://localhost:3001";
+// const apiLink = "https://ckchat-server.onrender.com";
 self.addEventListener("activate", async (e) => {
     // console.log("under activate");
     const subscription = await self.registration.pushManager.subscribe({
@@ -27,9 +29,9 @@ function urlB64ToUint8Array(base64String) {
 
 async function saveSubscription(subscription) {
     try {
-        console.log("subscription in save=", subscription);
+        // console.log("subscription in save=", subscription);
         // const response = await fetch("http://localhost:3001/save-subscription", {
-            const response = await fetch("https://ckchat-server.onrender.com/save-subscription", {
+            const response = await fetch(`${apiLink}/save-subscription`, {
             method: 'post',
             headers: {
                 'Content-type': 'application/json',
@@ -37,7 +39,7 @@ async function saveSubscription(subscription) {
             },
             body: JSON.stringify(subscription)
         })
-        console.log(response);
+        // console.log(response);
         return response.json();
     } catch (e) {
         console.log(e);

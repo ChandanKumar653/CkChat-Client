@@ -21,7 +21,10 @@ export default function NavBar() {
       Path: "/join-room",
       title: "Join Room",
     },
-
+    {
+      Path: "/personal-chat",
+      title: "Personal Chat",
+    },
     {
       Path: "/contact-us",
       title: "Contact Us",
@@ -43,10 +46,11 @@ export default function NavBar() {
 
           <ul className="list-none md:flex hidden  justify-end items-center flex-1">
             <>
-              <li className="mr-auto text-white text-[28px] font-bold shadow-2xl cursor-pointer animate-bounce w-6 h-8 custom-3d-text">
-                <div>
+              <li className="mr-auto text-white text-3xl font-bold shadow-2xl cursor-pointer animate-bounce w-6 h-8 custom-3d-text">
+                <div className="hidden xl:flex ">
                   {/* <img src={img} alt="logo" className="ml-9"/> */}
-                  <p>CkChat</p>
+                  <span className="text-[red]">Ck</span>
+                  <span className="text-white">Chat</span>
                 </div>
               </li>
 
@@ -86,9 +90,10 @@ export default function NavBar() {
           </ul>
 
           <div className="md:hidden flex flex-1 justify-end items-center cursor-pointer">
-            <div className="md:hidden w-[28px] h-[28px] object-contain mr-auto">
+            <div className="md:hidden w-[28px] h-[28px] object-contain mr-auto font-bold">
               {/* <img src={logo} alt="logo" className="" /> */}
-              <p className="text-white font-bold">CkChat</p>
+              <span className="text-[red]">Ck</span>
+              <span className="text-white">Chat</span>
             </div>
 
             <img
