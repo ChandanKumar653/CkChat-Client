@@ -83,7 +83,7 @@ if (res.signup.status === "success") {
             account.
           </p>
           <p className="text-white mt-4 leading-normal">
-            Please note that the verification link will expire in 2 minutes.
+            Please note that the verification link will expire in 5 minutes.
           </p>
         </div>
       </div>
