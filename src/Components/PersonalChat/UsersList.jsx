@@ -11,65 +11,65 @@ e.preventDefault();
   }
   let data=[
     {
-    name:"Test Kumar",
+    name:"Chandan Kumar",
     profileImage:""
   },
     {
-    name:"Rest Kumar",
+    name:"Rahul Kumar",
     profileImage:""
   },
     {
-    name:"Karan Kumar",
+    name:"Karan Sharma",
     profileImage:""
   },
     {
-    name:"Best Kumar",
+    name:"Ayush Kumar",
     profileImage:""
   },
     {
-    name:"Sasta Kumar",
+    name:"Satish Verma",
     profileImage:""
   },
-  //   {
-  //   name:"Dest Kumar",
-  //   profileImage:""
-  // },
-  //   {
-  //   name:"Gest Kumar",
-  //   profileImage:""
-  // },
-  //   {
-  //   name:"Lk Kumar",
-  //   profileImage:""
-  // },
-  //   {
-  //   name:"Vest Kumar",
-  //   profileImage:""
-  // },
-  //   {
-  //   name:"Jest Kumar",
-  //   profileImage:""
-  // },
-  //   {
-  //   name:"Jest Kumar",
-  //   profileImage:""
-  // },
-  //   {
-  //   name:"Jest Kumar",
-  //   profileImage:""
-  // },
-  //   {
-  //   name:"Jest Kumar",
-  //   profileImage:""
-  // },
-  //   {
-  //   name:"Jest Kumar",
-  //   profileImage:""
-  // },
-  //   {
-  //   name:"Jest Kumar",
-  //   profileImage:""
-  // },
+    {
+    name:"Dest Kumar",
+    profileImage:""
+  },
+    {
+    name:"Gest Kumar",
+    profileImage:""
+  },
+    {
+    name:"Lk Kumar",
+    profileImage:""
+  },
+    {
+    name:"Vest Kumar",
+    profileImage:""
+  },
+    {
+    name:"Jest Kumar",
+    profileImage:""
+  },
+    {
+    name:"Jest Kumar",
+    profileImage:""
+  },
+    {
+    name:"Jest Kumar",
+    profileImage:""
+  },
+    {
+    name:"Jest Kumar",
+    profileImage:""
+  },
+    {
+    name:"Jest Kumar",
+    profileImage:""
+  },
+    {
+    name:"Jest Kumar",
+    profileImage:""
+  },
 
 ]
 
@@ -125,12 +125,12 @@ e.preventDefault();
 
       <div
         className=" w-full md:w-[20rem] bg-[#0e0e0f] overflow-y-auto"
-        style={{ height: "80vh" }}
+        style={{ height: "78vh" }}
       >
         {data?.map((item, index) => (
           <div
             key={index}
-            className={`text-black p-1 cursor-pointer mt-2 ${
+            className={`text-black p-0.5 cursor-pointer mt-2 ${
               clickedIndex === index ? "bg-white" : "bg-[grey]"
             }`}
             onClick={() => {

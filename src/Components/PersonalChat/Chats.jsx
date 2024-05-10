@@ -3,7 +3,11 @@ import React,{useState} from 'react'
 import SendIcon from "@mui/icons-material/Send";
 import EmojiPicker from "emoji-picker-react";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
+import { useMediaQuery } from '@mui/material';
 export default function Chats(props) {
+
+    const isSmallScreen = useMediaQuery("(max-width:600px)");
+
 const [message,setMessage]=useState('');
 const [showEmoji,setShowEmoji]=useState(false);
   const handleSendMessage=async(e)=>{
@@ -15,8 +19,8 @@ e.preventDefault();
   };
   return (
     <div
-      className="bg-black-200 flex flex-col justify-between"
-      style={{ height: "93vh" }}
+      className="bg-black flex flex-col justify-between"
+      style={{ height:isSmallScreen?"93vh": "91vh" }}
     >
       <div className="flex items-center justify-center">{message}</div>
       <div className="flex items-center justify-center">
