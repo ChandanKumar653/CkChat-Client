@@ -26,7 +26,7 @@ e.preventDefault();
       <div className="flex items-center justify-center">
         {showEmoji ? <EmojiPicker onEmojiClick={handleEmojiClick} /> : null}
       </div>
-      <div className="flex justify-center mb-[16rem] md:mb-[4rem]">
+      <div className="flex justify-center mb-[10rem] md:mb-[4rem]">
         <form
           className="flex items-center bg-gray-800 rounded-lg px-4 py-2 border border-[white]"
           onSubmit={handleSendMessage}
