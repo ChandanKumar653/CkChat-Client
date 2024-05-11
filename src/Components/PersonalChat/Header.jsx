@@ -31,7 +31,7 @@ const handleBackButton=async()=>{
         </div>
 
         <div className="hidden md:flex items-center ml-3 text-2xl md:text-3xl font-bold">
-          <span className="text-[red]">Ck</span>
+          <span className="text-[white]">Ck</span>
           <span className="text-white">Chat</span>
         </div>
         {userClicked ? (
