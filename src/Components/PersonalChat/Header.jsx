@@ -22,7 +22,7 @@ const handleBackButton=async()=>{
 }
   return (
     <div>
-      <nav className="flex h-16 md:h-22 w-full bg-black border-b border-red-900 backdrop-blur-md">
+      <nav className="flex h-16 md:h-22 w-full bg-black border-b  border-white backdrop-blur-2xl">
         <div
           className="flex items-center ml-3 md:ml-10"
           onClick={handleBackButton}
@@ -69,7 +69,7 @@ const handleBackButton=async()=>{
         ) : (
           <>
             <div className="md:hidden text-white flex items-center justify-center mx-auto ">
-              <p className="text-2xl font-bold">Friend List</p>
+              <p className="text-2xl font-bold">Users List</p>
             </div>
             <div className="flex items-center justify-end text-white  ml-auto">
               <Stack style={{ gap: "25px" }} direction={"row"}>

@@ -19,16 +19,16 @@ e.preventDefault();
   };
   return (
     <div
-      className="bg-[#010101] flex flex-col justify-between"
+      className="bg-[#0e0e0f] flex flex-col justify-between"
       style={{ height: isSmallScreen ? "93vh" : "91vh" }}
     >
       <div className="flex items-center justify-center">{message}</div>
       <div className="flex items-center justify-center">
         {showEmoji ? <EmojiPicker onEmojiClick={handleEmojiClick} /> : null}
       </div>
-      <div className="flex justify-center mb-[4rem]">
+      <div className="flex justify-center mb-[16rem] md:mb-[4rem]">
         <form
-          className="flex items-center bg-gray-800 rounded-lg px-4 py-2 border border-[red]"
+          className="flex items-center bg-gray-800 rounded-lg px-4 py-2 border border-[white]"
           onSubmit={handleSendMessage}
         >
           <button
