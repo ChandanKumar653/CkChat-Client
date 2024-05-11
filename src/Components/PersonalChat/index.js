@@ -3,7 +3,7 @@ import Header from "./Header";
 import UsersList from "./UsersList";
 import Chats from "./Chats";
 import { useMediaQuery } from "@mui/material";
-
+ 
 export default function Index() {
   const isSmallScreen = useMediaQuery("(max-width:600px)");
   const [clicked, setClicked] = useState(false);
@@ -12,9 +12,13 @@ export default function Index() {
     setClicked(true);
   };
 
+  const changeUserClicked = () => {
+    setClicked(false);
+  };
+
   return (
     <div>
-      <Header userClicked={clicked} />
+      <Header userClicked={clicked} changeUserClicked={changeUserClicked}/>
       <div className="md:flex">
         <div
           // className={`w-full ${isSmallScreen ? "w-0" : "w-1/5"}`}

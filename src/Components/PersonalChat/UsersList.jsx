@@ -1,9 +1,12 @@
 import React,{useState} from 'react'
+import { useDispatch } from 'react-redux';
 import { Avatar,TextField,InputAdornment,IconButton } from '@mui/material';
 import SearchIcon from "@mui/icons-material/Search";
 import { useMediaQuery } from "@mui/material";
+import {addUser} from '../../Redux/Slices/PersonalChatSlice';
 export default function UsersList(props) {
   const [searchText,setSearchText]=useState('');
+  const dispatch=useDispatch();
    const [clickedIndex, setClickedIndex] = useState(null);
   const isSmallScreen = useMediaQuery("(max-width:600px)");
   const handleSearch=async(e)=>{
@@ -74,7 +77,13 @@ e.preventDefault();
 ]
 
 
- const handleClick = (index) => {
+ const handleClick = (index,name,profileImage) => {
+  let temp={
+    name:name,
+    profileImage:profileImage
+  }
+  // console.log(temp);
+  dispatch(addUser(temp));
   props.userClicked(true);
    setClickedIndex(index);
    props.userClicked(true);
@@ -131,10 +140,10 @@ e.preventDefault();
           <div
             key={index}
             className={`text-black p-0.5 cursor-pointer mt-2 ${
-              clickedIndex === index ? "bg-white" : "bg-[grey]"
+              clickedIndex === index ? "bg-white" : "bg-[#a4a3a3]"
             }`}
             onClick={() => {
-              handleClick(index);
+              handleClick(index,item.name,item.profileImage);
             }}
             style={{
               borderRadius: "10px",

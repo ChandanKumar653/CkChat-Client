@@ -19,8 +19,8 @@ e.preventDefault();
   };
   return (
     <div
-      className="bg-black flex flex-col justify-between"
-      style={{ height:isSmallScreen?"93vh": "91vh" }}
+      className="bg-[#010101] flex flex-col justify-between"
+      style={{ height: isSmallScreen ? "93vh" : "91vh" }}
     >
       <div className="flex items-center justify-center">{message}</div>
       <div className="flex items-center justify-center">
