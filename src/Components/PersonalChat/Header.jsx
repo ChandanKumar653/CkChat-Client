@@ -47,14 +47,15 @@ const handleBackButton=async()=>{
                 style={{
                   paddingLeft: "0.5rem",
                   fontWeight: "700",
-                  fontSize: "larger",
+                  fontSize:isSmallScreen?"small": "larger",
+                  
                 }}
               >
                 {data?.userInfo?.data?.name}
               </Typography>
             </div>
 
-            <div className="flex items-center justify-end text-white font-bold ml-auto md:mr-14 space-x-4 md:space-x-6">
+            <div className="flex items-center justify-end text-white font-bold ml-auto mr-8 md:mr-14 space-x-4 md:space-x-6">
               <CallIcon
                 style={{ height: "5vh", width: "5vw", cursor: "pointer" }}
               />
