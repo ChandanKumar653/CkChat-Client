@@ -43,7 +43,7 @@ if (data?.userChatData?.status==="loading"){
   // Generate an array of random booleans to determine whether each message should be on the left or right
   const positions = Array.from(
     { length: messageCount },
-    () => Math.random() < 0.5
+    () => Math.random() < 0.4
   );
 
   return (
@@ -84,7 +84,7 @@ if (data?.userChatData?.status==="loading"){
 }
   return (
     <div
-      className="bg-[#0e0e0f] flex flex-col justify-between md:h-[100%] h-screen"
+      className="bg-gradient-to-b from-[#0e0e0f] to-[#ff0000] flex flex-col justify-between md:h-[100%] h-screen"
       // style={{ height: isSmallScreen ? "93vh" : "91vh" }}
     >
       <div className="flex items-center justify-center">{message}</div>
