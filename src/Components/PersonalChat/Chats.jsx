@@ -28,12 +28,16 @@ e.preventDefault();
     setMessage(message + emojiObject.emoji);
   };
 
-useEffect(()=>{
-
+useEffect(() => {
   dispatch(makeTrueOrFalse("loading"));
-  
-
-},[dispatch])
+  async function test() {
+    const delay = 2000;
+    setTimeout(() => {
+      dispatch(makeTrueOrFalse("success"));
+    }, delay);
+  }
+  test();
+}, [dispatch, data?.userInfo?.data]);
 if (data?.userChatData?.status==="loading"){
 
   // Generate an array of random booleans to determine whether each message should be on the left or right
