@@ -61,10 +61,10 @@ const handleBackButton=async()=>{
               <VideoCallIcon
                 style={{ height: "5vh", width: "5vw", cursor: "pointer" }}
               />
-              <MoreVertIcon
+              <AccountCircleIcon
                 style={{ height: "5vh", width: "5vw", cursor: "pointer" }}
               />
-              <AccountCircleIcon
+              <MoreVertIcon
                 style={{ height: "5vh", width: "5vw", cursor: "pointer" }}
               />
             </div>
@@ -76,14 +76,15 @@ const handleBackButton=async()=>{
             </div>
             <div className="flex items-center justify-end text-white  ml-auto">
               <Stack style={{ gap: "25px" }} direction={"row"}>
-                <MoreVertIcon
+                <AccountCircleIcon
                   style={{
                     height: isSmallScreen ? "4vh" : "5vh",
                     width: isSmallScreen ? "4vh" : "5vh",
+
                     cursor: "pointer",
                   }}
                 />
-                <AccountCircleIcon
+                <MoreVertIcon
                   style={{
                     height: isSmallScreen ? "4vh" : "5vh",
                     width: isSmallScreen ? "4vh" : "5vh",
