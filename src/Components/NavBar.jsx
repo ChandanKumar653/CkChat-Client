@@ -44,7 +44,7 @@ export default function NavBar() {
         <nav className="bg-[#0e0e0f] w-full py-2 justify-between items-center navbar">
           {/* <img src={img} alt="logo" className=" w-[50px] h-[35px] m-2"/> */}
 
-          <ul className="list-none md:flex hidden  justify-end items-center flex-1">
+          <ul className="list-none lg:flex hidden  justify-end items-center flex-1">
             <>
               <li className="mr-auto text-white text-3xl font-bold shadow-2xl cursor-pointer animate-bounce w-6 h-8 custom-3d-text">
                 <div className="hidden xl:flex ">
@@ -89,8 +89,8 @@ export default function NavBar() {
             </>
           </ul>
 
-          <div className="md:hidden flex flex-1 justify-end items-center cursor-pointer">
-            <div className="md:hidden text-2xl object-contain mr-auto font-bold">
+          <div className="lg:hidden flex flex-1 justify-end items-center cursor-pointer">
+            <div className="lg:hidden text-2xl object-contain mr-auto font-bold">
               {/* <img src={logo} alt="logo" className="" /> */}
               <span className="text-[red]">Ck</span>
               <span className="text-white">Chat</span>

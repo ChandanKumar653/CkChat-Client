@@ -3,7 +3,7 @@ import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
 import CallIcon from "@mui/icons-material/Call";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import {useMediaQuery} from '@mui/material';
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";import {useMediaQuery} from '@mui/material';
 import { useSelector } from 'react-redux';
 import { Avatar, Stack, Typography } from '@mui/material';
 import {useNavigate} from 'react-router-dom';
@@ -47,8 +47,7 @@ const handleBackButton=async()=>{
                 style={{
                   paddingLeft: "0.5rem",
                   fontWeight: "700",
-                  fontSize:isSmallScreen?"small": "larger",
-                  
+                  fontSize: isSmallScreen ? "small" : "larger",
                 }}
               >
                 {data?.userInfo?.data?.name}
@@ -65,6 +64,9 @@ const handleBackButton=async()=>{
               <MoreVertIcon
                 style={{ height: "5vh", width: "5vw", cursor: "pointer" }}
               />
+              <AccountCircleIcon
+                style={{ height: "5vh", width: "5vw", cursor: "pointer" }}
+              />
             </div>
           </>
         ) : (
@@ -74,7 +76,21 @@ const handleBackButton=async()=>{
             </div>
             <div className="flex items-center justify-end text-white  ml-auto">
               <Stack style={{ gap: "25px" }} direction={"row"}>
-                <MoreVertIcon className="mr-3 cursor-pointer" />
+                <MoreVertIcon
+                  style={{
+                    height: isSmallScreen ? "4vh" : "5vh",
+                    width: isSmallScreen ? "4vh" : "5vh",
+                    cursor: "pointer",
+                  }}
+                />
+                <AccountCircleIcon
+                  style={{
+                    height: isSmallScreen ? "4vh" : "5vh",
+                    width: isSmallScreen ? "4vh" : "5vh",
+                    marginRight: isSmallScreen ? "4vw" : "4vw",
+                    cursor: "pointer",
+                  }}
+                />
               </Stack>
             </div>
           </>

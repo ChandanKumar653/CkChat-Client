@@ -3,7 +3,12 @@ import axios from "axios";
 
 const initialState = {
   userInfo: {
-    data:null,
+    data: null,
+    status: "idle",
+    error: null,
+  },
+  userChatData: {
+    data: null,
     status: "idle",
     error: null,
   },
@@ -15,6 +20,9 @@ export const PersonalChatSlice = createSlice({
     addUser: (state, action) => {
       state.userInfo.data = action.payload;
     },
+    makeTrueOrFalse:(state,action)=>{
+      state.userChatData.status=action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -22,7 +30,7 @@ export const PersonalChatSlice = createSlice({
         state.userInfo.status = "loading";
       })
       .addCase(getUserChat.fulfilled, (state, action) => {
-        state.userInfo.status = "succeeded";
+        state.userInfo.status = "success";
         state.userInfo.data = action.payload;
       })
       .addCase(getUserChat.rejected, (state, action) => {
@@ -45,5 +53,5 @@ export const getUserChat = createAsyncThunk("getUserChat/get", async () => {
   }
 });
 
-export const { addUser} = PersonalChatSlice.actions;
+export const { addUser, makeTrueOrFalse } = PersonalChatSlice.actions;
 export default PersonalChatSlice.reducer;

@@ -50,7 +50,7 @@ e.preventDefault();
     profileImage:""
   },
     {
-    name:"Jest Kumar",
+    name:"Jest Kumar singh bahadur kundan kumar yadav",
     profileImage:""
   },
     {
@@ -77,10 +77,11 @@ e.preventDefault();
 ]
 
 
- const handleClick = (index,name,profileImage) => {
+ const handleClick = (index,name,profileImage,email) => {
   let temp={
     name:name,
-    profileImage:profileImage
+    profileImage:profileImage,
+    email:email
   }
   // console.log(temp);
   dispatch(addUser(temp));
@@ -140,11 +141,11 @@ e.preventDefault();
             key={index}
             className={`flex items-center p-4 cursor-pointer mt-2 rounded-lg shadow-md ${
               clickedIndex === index
-                ? "bg-white text-black"
+                ? "bg-white text-black hover:bg-white"
                 : "bg-gray-700 text-white"
             } hover:bg-gray-800  focus:outline-none focus:ring-2 focus:ring-blue-500`}
             onClick={() => {
-              handleClick(index, item.name, item.profileImage);
+              handleClick(index, item.name, item.profileImage,item.email);
             }}
           >
             <Avatar
