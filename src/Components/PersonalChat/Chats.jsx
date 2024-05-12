@@ -9,7 +9,7 @@ import {makeTrueOrFalse} from '../../Redux/Slices/PersonalChatSlice';
 import { useDispatch } from 'react-redux';
 export default function Chats(props) {
 const dispatch=useDispatch();
-    // const isSmallScreen = useMediaQuery("(max-width:600px)");
+    const isSmall = useMediaQuery("(max-width:600px)");
       const isSmallScreen = useMediaQuery("(max-height:600px)");
   const screenHeight = isSmallScreen ? 400 : 600; // Adjust the default screen height as needed
 
@@ -28,7 +28,17 @@ e.preventDefault();
     setMessage(message + emojiObject.emoji);
   };
 
+
+ const [color, setColor] = useState("");
+
 useEffect(() => {
+
+  const colors = ["#ff0000", "#8a2be2", "gold", "#ff0000","#007bff"];
+
+ const randomIndex = Math.floor(Math.random() * colors.length);
+
+ const temp = colors.splice(randomIndex, 1)[0];  setColor(colors[randomIndex]);
+setColor(temp);
   dispatch(makeTrueOrFalse("loading"));
   async function test() {
     const delay = 2000;
@@ -54,8 +64,9 @@ if (data?.userChatData?.status==="loading"){
         height: "90vh",
         overflowY: "auto",
         marginTop: "5px",
-        backgroundColor: "#2C2D2D",
+        // backgroundColor: "#2C2D2D",
       }}
+      className="bg-gradient-to-b from-[#0e0e0f] to-[grey]"
     >
       {[...Array(messageCount).keys()].map((index) => (
         <Grid key={index} item xs={12}>
@@ -66,8 +77,8 @@ if (data?.userChatData?.status==="loading"){
             <Grid item>
               <Skeleton
                 variant="rectangular"
-                height={40}
-                width={200}
+                height={isSmall?30:40}
+                width={isSmall?100:200}
                 sx={{
                   bgcolor: "rgba(255, 255, 255, 0.7)",
                   marginLeft: "10px",
@@ -82,9 +93,10 @@ if (data?.userChatData?.status==="loading"){
     </Grid>
   );
 }
+
   return (
     <div
-      className="bg-gradient-to-b from-[#0e0e0f] to-[#ff0000] flex flex-col justify-between md:h-[100%] h-screen"
+      className={`bg-gradient-to-b from-[#0e0e0f] to-[${color}] flex flex-col justify-between md:h-[100%] h-screen`}
       // style={{ height: isSmallScreen ? "93vh" : "91vh" }}
     >
       <div className="flex items-center justify-center">{message}</div>
