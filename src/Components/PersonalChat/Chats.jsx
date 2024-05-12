@@ -3,7 +3,7 @@ import React,{useEffect, useState} from 'react'
 import SendIcon from "@mui/icons-material/Send";
 import EmojiPicker from "emoji-picker-react";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
-import { CircularProgress,Skeleton ,Grid,useMediaQuery} from '@mui/material';
+import { Skeleton ,Grid,useMediaQuery} from '@mui/material';
 import { useSelector } from 'react-redux';
 import {makeTrueOrFalse} from '../../Redux/Slices/PersonalChatSlice';
 import { useDispatch } from 'react-redux';
