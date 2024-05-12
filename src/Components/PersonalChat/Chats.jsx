@@ -3,100 +3,119 @@ import React,{useEffect, useState} from 'react'
 import SendIcon from "@mui/icons-material/Send";
 import EmojiPicker from "emoji-picker-react";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
-import { Skeleton ,Grid,useMediaQuery} from '@mui/material';
+// import { useMediaQuery} from '@mui/material';
 import { useSelector } from 'react-redux';
 import {makeTrueOrFalse} from '../../Redux/Slices/PersonalChatSlice';
 import { useDispatch } from 'react-redux';
-export default function Chats(props) {
-const dispatch=useDispatch();
-    const isSmall = useMediaQuery("(max-width:600px)");
-      const isSmallScreen = useMediaQuery("(max-height:600px)");
-  const screenHeight = isSmallScreen ? 400 : 600; // Adjust the default screen height as needed
+import Lottie from 'lottie-react';
+import Loading from "../../Assets/Animations/Loading.json";
 
-  // Calculate the number of skeleton messages needed to fill the screen height
-  const messageCount = Math.ceil(screenHeight / 40);
+import Loading1 from '../../Assets/Animations/Loading1.json';
+import Loading2 from '../../Assets/Animations/Loading2.json';
+export default function Chats() {
+  const dispatch = useDispatch();
+  // const isSmall = useMediaQuery("(max-width:600px)");
+  // const isSmallScreen = useMediaQuery("(max-height:600px)");
+  // const screenHeight = isSmallScreen ? 400 : 600;
 
- const data = useSelector((state) => state.personalChat);
+  // const messageCount = Math.ceil(screenHeight / 40);
 
-const [message,setMessage]=useState('');
-const [showEmoji,setShowEmoji]=useState(false);
-  const handleSendMessage=async(e)=>{
-e.preventDefault();
-  }
+  const data = useSelector((state) => state.personalChat);
+
+  const [message, setMessage] = useState("");
+  const [showEmoji, setShowEmoji] = useState(false);
+  const handleSendMessage = async (e) => {
+    e.preventDefault();
+  };
   const handleEmojiClick = (emojiObject) => {
     // console.log(emojiObject.emoji);
     setMessage(message + emojiObject.emoji);
   };
 
+  // const colors = ["#A52A2A", "#007bff"];
+  // const getColor = () =>
+  //   Math.floor(Math.random() * colors.length);
 
- const [color, setColor] = useState("");
+  useEffect(() => {
+    dispatch(makeTrueOrFalse("loading"));
 
-useEffect(() => {
-
-  const colors = ["#ff0000", "#8a2be2", "gold", "#ff0000","#007bff"];
-
- const randomIndex = Math.floor(Math.random() * colors.length);
-
- const temp = colors.splice(randomIndex, 1)[0];  setColor(colors[randomIndex]);
-setColor(temp);
-  dispatch(makeTrueOrFalse("loading"));
-  async function test() {
     const delay = 2000;
     setTimeout(() => {
       dispatch(makeTrueOrFalse("success"));
     }, delay);
+  }, [dispatch, data?.userInfo?.data]);
+
+  const animations = [Loading, Loading2, Loading1];
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
   }
-  test();
-}, [dispatch, data?.userInfo?.data]);
-if (data?.userChatData?.status==="loading"){
 
-  // Generate an array of random booleans to determine whether each message should be on the left or right
-  const positions = Array.from(
-    { length: messageCount },
-    () => Math.random() < 0.4
-  );
+  // Shuffle the animations array
+  shuffleArray(animations);
 
-  return (
-    <Grid
-      container
-      spacing={2}
-      style={{
-        height: "90vh",
-        overflowY: "auto",
-        marginTop: "5px",
-        // backgroundColor: "#2C2D2D",
-      }}
-      className="bg-gradient-to-b from-[#0e0e0f] to-[grey]"
-    >
-      {[...Array(messageCount).keys()].map((index) => (
-        <Grid key={index} item xs={12}>
-          <Grid
-            container
-            justifyContent={positions[index] ? "flex-end" : "flex-start"}
-          >
-            <Grid item>
-              <Skeleton
-                variant="rectangular"
-                height={isSmall?30:40}
-                width={isSmall?100:200}
-                sx={{
-                  bgcolor: "rgba(255, 255, 255, 0.7)",
-                  marginLeft: "10px",
-                  marginRight: "10px",
-                  borderRadius: "10px",
-                }}
-              />
-            </Grid>
-          </Grid>
-        </Grid>
-      ))}
-    </Grid>
-  );
-}
+  // Function to get a random animation from the shuffled array
+  const getRandomAnimation = () =>
+    animations[Math.floor(Math.random() * animations.length)];
+
+  // Example usage:
+  const randomAnimation= getRandomAnimation(); // Get a random animation
+
+  if (data?.userChatData?.status === "loading") {
+    return (
+      <div className="h-screen md:h-full flex items-centern justify-center ">
+        <Lottie animationData={randomAnimation} style={{ width: "30vw" }} />
+      </div>
+    );
+
+    // const positions = Array.from(
+    //   { length: messageCount },
+    //   () => Math.random() < 0.4
+    // );
+
+    // return (
+    //   <Grid
+    //     container
+    //     spacing={2}
+    //     style={{
+    //       height: "90vh",
+    //       overflowY: "auto",
+    //       marginTop: "5px",
+    //       // backgroundColor: "#2C2D2D",
+    //     }}
+    //     className="bg-gradient-to-b from-[#0e0e0f] to-[grey]"
+    //   >
+    //     {[...Array(messageCount).keys()].map((index) => (
+    //       <Grid key={index} item xs={12}>
+    //         <Grid
+    //           container
+    //           justifyContent={positions[index] ? "flex-end" : "flex-start"}
+    //         >
+    //           <Grid item>
+    //             <Skeleton
+    //               variant="rectangular"
+    //               height={isSmall?30:40}
+    //               width={isSmall?100:200}
+    //               sx={{
+    //                 bgcolor: "rgba(255, 255, 255, 0.7)",
+    //                 marginLeft: "10px",
+    //                 marginRight: "10px",
+    //                 borderRadius: "10px",
+    //               }}
+    //             />
+    //           </Grid>
+    //         </Grid>
+    //       </Grid>
+    //     ))}
+    //   </Grid>
+    // );
+  }
 
   return (
     <div
-      className={`bg-gradient-to-b from-[#0e0e0f] to-[${color}] flex flex-col justify-between md:h-[100%] h-screen`}
+      className={`bg-gradient-to-b from-[#0e0e0f] to-[#fff] flex flex-col justify-between md:h-[100%] h-screen`}
       // style={{ height: isSmallScreen ? "93vh" : "91vh" }}
     >
       <div className="flex items-center justify-center">{message}</div>
