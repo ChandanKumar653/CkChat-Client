@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useCallback,useEffect} from "react";
 import "../Login/Login.css";
 import MailIcon from "@mui/icons-material/Mail";
 // import LockIcon from "@mui/icons-material/Lock";
@@ -54,11 +54,22 @@ export default function Signup() {
    dispatch(registerUser(formData));
  };
 const res = useSelector((state) => state.auth);
+const memoizedNavigate = useCallback(() => {
+  if (res.local.isAuthenticated) {
+    navigate("/personal-chat", { replace: true });
+  }
+}, [navigate, res.local.isAuthenticated]);
+
+useEffect(() => {
+  memoizedNavigate();
+}, [memoizedNavigate]);
+
+
 console.log(res);
 if(res.signup.status==="error"){
    Swal.fire(
      "Oops!",
-     `Error signing up!! ${res.signup.error}`,
+     `${res.signup.error}`,
      "error"
    );
   
@@ -70,6 +81,10 @@ if (res.signup.status === "success") {
     "Verification link sent!! Please check you email.",
     "success"
   );
+ 
+
+
+
 
   // Return HTML to display a message about verification email
   return (

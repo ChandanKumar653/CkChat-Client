@@ -1,26 +1,28 @@
-import React,{useEffect, useState} from 'react'
+import React,{ useState} from 'react'
 // import { Grid,InputAdornment,IconButton,TextField } from '@mui/material';
 import SendIcon from "@mui/icons-material/Send";
 import EmojiPicker from "emoji-picker-react";
+import { Tooltip } from '@mui/material';
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 // import { useMediaQuery} from '@mui/material';
 import { useSelector } from 'react-redux';
-import {makeTrueOrFalse} from '../../Redux/Slices/PersonalChatSlice';
-import { useDispatch } from 'react-redux';
+// import {makeTrueOrFalse} from '../../Redux/Slices/PersonalChatSlice';
+// import { useDispatch } from 'react-redux';
 import Lottie from 'lottie-react';
 import Loading from "../../Assets/Animations/Loading.json";
 
 import Loading1 from '../../Assets/Animations/Loading1.json';
 import Loading2 from '../../Assets/Animations/Loading2.json';
 export default function Chats() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // const isSmall = useMediaQuery("(max-width:600px)");
   // const isSmallScreen = useMediaQuery("(max-height:600px)");
   // const screenHeight = isSmallScreen ? 400 : 600;
 
   // const messageCount = Math.ceil(screenHeight / 40);
 
-  const data = useSelector((state) => state.personalChat);
+  // const data = useSelector((state) => state.personalChat);
+  const users = useSelector((state) => state.getAllUser?.userData);
 
   const [message, setMessage] = useState("");
   const [showEmoji, setShowEmoji] = useState(false);
@@ -36,14 +38,15 @@ export default function Chats() {
   // const getColor = () =>
   //   Math.floor(Math.random() * colors.length);
 
-  useEffect(() => {
-    dispatch(makeTrueOrFalse("loading"));
+//   useEffect(() => {
+//     // dispatch(makeTrueOrFalse("loading"));
 
-    const delay = 2000;
-    setTimeout(() => {
-      dispatch(makeTrueOrFalse("success"));
-    }, delay);
-  }, [dispatch, data?.userInfo?.data]);
+//     // const delay = 2000;
+//     // setTimeout(() => {
+//     //   dispatch(makeTrueOrFalse("success"));
+//     // }, delay);
+// dispatch(getAllUsers());
+//   }, [dispatch, data?.userInfo?.data]);
 
   const animations = [Loading, Loading2, Loading1];
   function shuffleArray(array) {
@@ -63,7 +66,7 @@ export default function Chats() {
   // Example usage:
   const randomAnimation= getRandomAnimation(); // Get a random animation
 
-  if (data?.userChatData?.status === "loading") {
+  if (users?.status === "loading") {
     return (
       <div className="h-screen md:h-full flex items-centern justify-center ">
         <Lottie animationData={randomAnimation} style={{ width: "30vw" }} />
@@ -120,22 +123,27 @@ export default function Chats() {
     >
       <div className="flex items-center justify-center">{message}</div>
       <div className="flex items-center justify-center">
-        {showEmoji ? <EmojiPicker onEmojiClick={handleEmojiClick} /> : null}
+        {showEmoji ? (
+          <>
+            <EmojiPicker onEmojiClick={handleEmojiClick} />
+          </>
+        ) : null}
       </div>
       <div className="flex justify-center mb-[10rem] md:mb-[4rem]">
         <form
           className="flex items-center bg-gray-800 rounded-lg px-4 py-2 border border-[white]"
           onSubmit={handleSendMessage}
         >
-          <button
-            className="ml-2 text-white focus:outline-none"
+          <div
+            className="ml-2 text-white focus:outline-none cursor-pointer"
             onClick={() => {
               setShowEmoji(!showEmoji);
             }}
           >
-            <EmojiEmotionsIcon />
-          </button>
-
+            <Tooltip title="Emoji">
+              <EmojiEmotionsIcon />
+            </Tooltip>
+          </div>
           <input
             type="text"
             required
@@ -148,7 +156,9 @@ export default function Chats() {
           />
           <div className="flex items-center">
             <button className="ml-2 text-white focus:outline-none">
-              <SendIcon />
+              <Tooltip title="Send">
+                <SendIcon />
+              </Tooltip>
             </button>
           </div>
         </form>

@@ -3,11 +3,17 @@ import { useNavigate } from "react-router-dom";
 // import img from '../Assets/Images/speak.png';
 import close from '../Assets/Images/close.svg';
 import menu from '../Assets/Images/menu.svg';
+import { setAuthState } from "../Redux/Slices/AuthSlice";
+import { useDispatch } from "react-redux";
 // import logo from '../Assets/Images/speak.png';
 import { Button } from "@mui/material";
+import { useSelector } from "react-redux";
 export default function NavBar() {
   const navigate=useNavigate();
+  const dispatch=useDispatch();
   const [toggle,setToggle]=useState(false);
+const res = useSelector((state) => state.auth.local);
+// console.log("nav res",res);
   const data = [
     {
       Path: "/",
@@ -38,6 +44,31 @@ export default function NavBar() {
       title: "Sign In",
     },
   ];
+
+  if (res.isAuthenticated) {
+    // Find indexes of the elements to be removed
+    const indicesToRemove = [
+      data.findIndex((item) => item.Path === "/sign-up"),
+      data.findIndex((item) => item.Path === "/sign-in"),
+    ];
+
+    // Sort indices in descending order
+    indicesToRemove.sort((a, b) => b - a);
+
+    // Remove elements by index
+    indicesToRemove.forEach((index) => {
+      if (index !== -1) {
+        data.splice(index, 1);
+      }
+    });
+
+ data.push({
+      Path: "/sign-in",
+      title: "Logout"
+    });
+console.log("data",data);
+  }
+
   return (
     <>
       <div className="bg-[#0e0e0f] w-full overflow-hidden pt-2 pl-16 pr-16">
@@ -66,7 +97,18 @@ export default function NavBar() {
                       variant="contained"
                       // color="error"
                       onClick={() => {
-                        navigate(item.Path);
+                         if (item.title === "Logout") {
+                           console.log("under if");
+                           localStorage.removeItem("loginToken");
+                          //  console.log("Token local nav",localStorage.getItem("loginToken"));
+                            const temp = {
+                              isAuthenticated: false,
+                              token: null,
+                              decoded: null,
+                            };
+                            dispatch(setAuthState(temp));
+                         }
+                                 navigate(item.Path);
                       }}
                       style={{
                         background: "linear-gradient(135deg, #D0312D, #FF5733)",
@@ -138,6 +180,7 @@ export default function NavBar() {
                           {item.title}
                         </Button>
                       ) : (
+                      
                         <button
                           onClick={() => {
                             navigate(item.Path);

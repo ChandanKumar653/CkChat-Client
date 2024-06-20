@@ -5,21 +5,32 @@ import CallIcon from "@mui/icons-material/Call";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";import {useMediaQuery} from '@mui/material';
 import { useSelector } from 'react-redux';
-import { Avatar, Stack, Typography } from '@mui/material';
+import { Avatar, Stack, Typography,Menu,MenuItem,Tooltip } from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 export default function Header({userClicked,changeUserClicked}) {
     const navigate=useNavigate();
       const data = useSelector((state) => state.personalChat);
       // console.log("data",data);
   const isSmallScreen = useMediaQuery("(max-width:600px)");
+
 const handleBackButton=async()=>{
   if(isSmallScreen&&userClicked){
          changeUserClicked(false);
   }else{
  navigate("/");
   }
-
 }
+
+ const [anchorEl, setAnchorEl] = React.useState(null);
+ const open = Boolean(anchorEl);
+ const handleClick = (event) => {
+   setAnchorEl(event.currentTarget);
+ };
+ const handleClose = () => {
+   setAnchorEl(null);
+ };
+
+
   return (
     <div>
       <nav className="flex h-16 md:h-22 w-full bg-black border-b  border-white backdrop-blur-2xl">
@@ -55,19 +66,52 @@ const handleBackButton=async()=>{
             </div>
 
             <div className="flex items-center justify-end text-white font-bold ml-auto mr-8 md:mr-14 space-x-4 md:space-x-6">
-              <CallIcon
-                style={{ height: "5vh", width: "5vw", cursor: "pointer" }}
-              />
-              <VideoCallIcon
-                style={{ height: "5vh", width: "5vw", cursor: "pointer" }}
-              />
-              <AccountCircleIcon
-                style={{ height: "5vh", width: "5vw", cursor: "pointer" }}
-              />
-              <MoreVertIcon
-                style={{ height: "5vh", width: "5vw", cursor: "pointer" }}
-              />
+              <Tooltip title="Audio Call">
+                <CallIcon
+                  style={{ height: "5vh", width: "5vw", cursor: "pointer" }}
+                />
+              </Tooltip>
+
+              <Tooltip title="Video Call">
+                <VideoCallIcon
+                  style={{ height: "5vh", width: "5vw", cursor: "pointer" }}
+                />
+              </Tooltip>
+              <Tooltip title="Profile">
+                <AccountCircleIcon
+                  style={{ height: "5vh", width: "5vw", cursor: "pointer" }}
+                />
+              </Tooltip>
+              <Tooltip title="More">
+                <MoreVertIcon
+                  id="demo-positioned-button"
+                  aria-controls={open ? "demo-positioned-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? "true" : undefined}
+                  onClick={handleClick}
+                  style={{ height: "5vh", width: "5vw", cursor: "pointer" }}
+                />
+              </Tooltip>
             </div>
+            <Menu
+              id="demo-positioned-menu"
+              aria-labelledby="demo-positioned-button"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+            >
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem onClick={handleClose}>Logout</MenuItem>
+            </Menu>
           </>
         ) : (
           <>
@@ -76,22 +120,50 @@ const handleBackButton=async()=>{
             </div>
             <div className="flex items-center justify-end text-white  ml-auto">
               <Stack style={{ gap: "25px" }} direction={"row"}>
-                <AccountCircleIcon
-                  style={{
-                    height: isSmallScreen ? "4vh" : "5vh",
-                    width: isSmallScreen ? "4vh" : "5vh",
+                <Tooltip title="Profile">
+                  <AccountCircleIcon
+                    style={{
+                      height: isSmallScreen ? "4vh" : "5vh",
+                      width: isSmallScreen ? "4vh" : "5vh",
 
-                    cursor: "pointer",
+                      cursor: "pointer",
+                    }}
+                  />
+                </Tooltip>
+                <Tooltip title="More">
+                  <MoreVertIcon
+                    id="demo-positioned-button"
+                    aria-controls={open ? "demo-positioned-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    onClick={handleClick}
+                    style={{
+                      height: isSmallScreen ? "4vh" : "5vh",
+                      width: isSmallScreen ? "4vh" : "5vh",
+                      marginRight: isSmallScreen ? "4vw" : "4vw",
+                      cursor: "pointer",
+                    }}
+                  />
+                </Tooltip>
+                <Menu
+                  id="demo-positioned-menu"
+                  aria-labelledby="demo-positioned-button"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
                   }}
-                />
-                <MoreVertIcon
-                  style={{
-                    height: isSmallScreen ? "4vh" : "5vh",
-                    width: isSmallScreen ? "4vh" : "5vh",
-                    marginRight: isSmallScreen ? "4vw" : "4vw",
-                    cursor: "pointer",
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
                   }}
-                />
+                >
+                  <MenuItem onClick={handleClose}>Profile</MenuItem>
+                  <MenuItem onClick={handleClose}>My account</MenuItem>
+                  <MenuItem onClick={handleClose}>Logout</MenuItem>
+                </Menu>
               </Stack>
             </div>
           </>

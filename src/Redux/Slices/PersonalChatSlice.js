@@ -17,12 +17,12 @@ export const PersonalChatSlice = createSlice({
   name: "personalChat",
   initialState,
   reducers: {
-    addUser: (state, action) => {
-      state.userInfo.data = action.payload;
-    },
-    makeTrueOrFalse:(state,action)=>{
-      state.userChatData.status=action.payload;
-    }
+    // addUser: (state, action) => {
+    //   state.userInfo.data = action.payload;
+    // },
+    // makeTrueOrFalse:(state,action)=>{
+    //   state.userChatData.status=action.payload;
+    // }
   },
   extraReducers: (builder) => {
     builder
@@ -53,5 +53,5 @@ export const getUserChat = createAsyncThunk("getUserChat/get", async () => {
   }
 });
 
-export const { addUser, makeTrueOrFalse } = PersonalChatSlice.actions;
+// export const { addUser, makeTrueOrFalse } = PersonalChatSlice.actions;
 export default PersonalChatSlice.reducer;

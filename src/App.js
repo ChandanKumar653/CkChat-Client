@@ -22,16 +22,20 @@ import Signup from './Components/SignUp/Signup';
 import { apiLink } from './Constants';
 import Verify from './Components/verifyUser/Verify';
 import PersonalChat from './Components/PersonalChat/index';
+import ProtectedRoute from './ProtectedRoute';
+import { useDispatch } from 'react-redux';
+import { checkAuth } from './Redux/Slices/AuthSlice';
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
-
+ const dispatch=useDispatch();
   useEffect(() => {
+    dispatch(checkAuth());
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2000); 
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [dispatch]);
 
   const location = useLocation();
 
@@ -90,15 +94,28 @@ console.log("Error verifying captcha:",e);
           ) : (
             <>
               <div>{shouldRenderNavbar && <NavBar />}</div>
-
+             
               <PeerProvider>
+                
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/chat" element={<Layout />} />
                   <Route path="/test" element={<TestRedux />} />
                   <Route path="/sign-in" element={<Login />} />
                   <Route path="/sign-up" element={<Signup />} />
-                  <Route path="/personal-chat" element={<PersonalChat />} />
+                      {/* Protected Routes */}
+                      {/* <Route path="/" element={<ProtectedRoute />}>
+                        <Route path="/personal-chat" element={<PersonalChat />} />
+                      </Route> */}
+                 {/* {isAuthenticated? <Route path="/personal-chat" element={<PersonalChat />} />:""} */}
+                    <Route
+                      path="/personal-chat"
+                      element={
+                        <ProtectedRoute>
+                          <PersonalChat />
+                        </ProtectedRoute>
+                      } 
+                    />
                   <Route path="/room-test" element={<RoomTest />} />
                   <Route path="/auth/:token" element={<Verify />} />
                   {/* <SocketProvider>
@@ -126,7 +143,9 @@ console.log("Error verifying captcha:",e);
 
                   <Route path="*" element={<PageNotFound />} />
                 </Routes>
+                  
               </PeerProvider>
+             
               {/* <Layout /> */}
               {/* <AnimationTest/> */}
               <div>{shouldRenderNavbar && <Footer />}</div>
