@@ -58,7 +58,7 @@ if (res.login.status === "success") {
     "success"
   );
   console.log(res.login.data);
- localStorage.setItem("loginToken", res.login.data);
+ localStorage.setItem("ckChatLoginToken", res.login.data);
  const temp = {
    isAuthenticated: true,
    token: res.login.data,

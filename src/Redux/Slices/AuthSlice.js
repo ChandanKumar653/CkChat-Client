@@ -31,6 +31,22 @@ export const AuthSlice = createSlice({
   reducers: {
     setAuthState: (state, action) => {
       state.local = action.payload;
+      if(state.local.token){
+
+        try {
+          const decodedToken = jwtDecode(state.local.token);
+          const currentTime = Date.now() / 1000;
+
+          if (decodedToken.exp < currentTime) {
+           state.local.decoded=null;
+          } else {
+         state.local.decoded=decodedToken;
+          }
+        } catch (error) {
+          console.error("Error decoding token in setAuthState:", error);
+          state.local.decoded = null;
+        }
+      }
     },
     setLoginStatus:(state)=>{
       state.login.status="idle";
@@ -151,7 +167,7 @@ export const verifyUser = createAsyncThunk(
 export const { setAuthState,setLoginStatus } = AuthSlice.actions;
 
 export const checkAuth = () => (dispatch) => {
-  const token = localStorage.getItem("loginToken");
+  const token = localStorage.getItem("ckChatLoginToken");
   // console.log("checkAuth Auto token:",token)
   const temp = {
     isAuthenticated: false,
@@ -169,7 +185,7 @@ export const checkAuth = () => (dispatch) => {
     const currentTime = Date.now() / 1000;
 
     if (decodedToken.exp < currentTime) {
-      localStorage.removeItem("loginToken");
+      localStorage.removeItem("ckChatLoginToken");
       dispatch(setAuthState(temp));
     } else {
       const authenticatedState = {
@@ -181,7 +197,7 @@ export const checkAuth = () => (dispatch) => {
     }
   } catch (error) {
     console.error("Error decoding token:", error);
-    localStorage.removeItem("loginToken");
+    localStorage.removeItem("ckChatLoginToken");
     dispatch(setAuthState(temp));
   }
 };

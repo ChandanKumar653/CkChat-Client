@@ -112,7 +112,9 @@ console.log("Error verifying captcha:",e);
                       path="/personal-chat"
                       element={
                         <ProtectedRoute>
+                          <SocketProvider>
                           <PersonalChat />
+                          </SocketProvider>
                         </ProtectedRoute>
                       } 
                     />

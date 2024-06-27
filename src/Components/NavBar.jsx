@@ -99,8 +99,8 @@ console.log("data",data);
                       onClick={() => {
                          if (item.title === "Logout") {
                            console.log("under if");
-                           localStorage.removeItem("loginToken");
-                          //  console.log("Token local nav",localStorage.getItem("loginToken"));
+                           localStorage.removeItem("ckChatLoginToken");
+                          //  console.log("Token local nav",localStorage.getItem("ckChatLoginToken"));
                             const temp = {
                               isAuthenticated: false,
                               token: null,

@@ -7,7 +7,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
-  var [token, setToken] = useState(localStorage.getItem("loginToken"));
+  var [token, setToken] = useState(localStorage.getItem("ckChatLoginToken"));
 
   const [decoded, setDecoded] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(!!token);
@@ -26,7 +26,7 @@ console.log("isAuthenticated: ",isAuthenticated);
         const currentTime = Date.now() / 1000;
 
         if (decodedToken.exp < currentTime) {
-          localStorage.removeItem("loginToken");
+          localStorage.removeItem("ckChatLoginToken");
           setIsAuthenticated(false);
           navigate("/sign-in", { replace: true });
         } else {
@@ -35,7 +35,7 @@ console.log("isAuthenticated: ",isAuthenticated);
         }
       } catch (error) {
         console.error("Error decoding token:", error);
-        localStorage.removeItem("loginToken");
+        localStorage.removeItem("ckChatLoginToken");
         setIsAuthenticated(false);
         navigate("/sign-in", { replace: true });
       }
@@ -45,12 +45,12 @@ console.log("isAuthenticated: ",isAuthenticated);
   }, [token, navigate]);
 
   const login = (newToken) => {
-    localStorage.setItem("loginToken", newToken);
+    localStorage.setItem("ckChatLoginToken", newToken);
     setToken(newToken);
   };
 
   const logout = () => {
-    localStorage.removeItem("loginToken");
+    localStorage.removeItem("ckChatLoginToken");
     setToken(null);
     setIsAuthenticated(false);
     navigate("/sign-in", { replace: true });

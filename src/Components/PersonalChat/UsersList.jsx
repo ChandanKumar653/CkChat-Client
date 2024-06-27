@@ -1,19 +1,23 @@
 import React,{useEffect, useState} from 'react'
 import { useDispatch,useSelector } from 'react-redux';
-import { Avatar,TextField,InputAdornment,IconButton, CircularProgress, LinearProgress } from '@mui/material';
+import { Avatar,TextField,InputAdornment,IconButton, LinearProgress } from '@mui/material';
 import SearchIcon from "@mui/icons-material/Search";
 import { useMediaQuery } from "@mui/material";
-// import {addUser} from '../../Redux/Slices/PersonalChatSlice';
+import {addUser} from '../../Redux/Slices/PersonalChatSlice';
 import { getAllUsers } from "../../Redux/Slices/GetAllUserSlice";
-
 export default function UsersList(props) {
   const [searchText,setSearchText]=useState('');
   const dispatch=useDispatch();
    const [clickedIndex, setClickedIndex] = useState(null);
   const isSmallScreen = useMediaQuery("(max-width:600px)");
- const {data,status,error} = useSelector((state) => state.getAllUser?.userData);
+   const { decoded } = useSelector((state) => state.auth.local);
+ var {data,status,error} = useSelector((state) => state.getAllUser?.userData);
+data = data ? [...data] : [];
 //  console.log("data test=",data);
-
+let dataIndex=data.findIndex(item => item.email === decoded.email);
+if(dataIndex!==-1){
+  data.splice(dataIndex, 1);
+}
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
@@ -96,13 +100,13 @@ e.preventDefault();
 
 
  const handleClick = (index,name,profileImage,email) => {
-  // let temp={
-  //   name:name,
-  //   profileImage:profileImage,
-  //   email:email
-  // }
-  // console.log(temp);
-  // dispatch(addUser(temp));
+  let temp={
+    name:name,
+    profileImage:profileImage,
+    email:email
+  }
+  console.log(temp);
+  dispatch(addUser(temp));
   props.userClicked(true);
    setClickedIndex(index);
    props.userClicked(true);

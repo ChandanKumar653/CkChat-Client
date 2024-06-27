@@ -110,7 +110,7 @@ const handleBackButton=async()=>{
             >
               <MenuItem onClick={handleClose}>Profile</MenuItem>
               <MenuItem onClick={handleClose}>My account</MenuItem>
-              <MenuItem onClick={handleClose}>Logout</MenuItem>
+              <MenuItem onClick={()=>{localStorage.removeItem("ckChatLoginToken");console.log(localStorage.getItem("ckChatLoginToken"))}}>Logout</MenuItem>
             </Menu>
           </>
         ) : (

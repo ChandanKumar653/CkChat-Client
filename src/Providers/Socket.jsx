@@ -1,19 +1,26 @@
 import React,{createContext, useMemo} from 'react';
 import { io } from 'socket.io-client';
 import { apiLink } from "../Constants";
-
+import { useSelector } from 'react-redux';
 const SocketContext=createContext(null);
 export const useSocket=()=>{
     return React.useContext(SocketContext);
 }
 
 export const SocketProvider=(props)=>{
-    const socket=useMemo(()=> io(apiLink, {
-       auth: {
-         token:
-           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiQ2tDaGF0IiwiaWF0IjoxNzAzODU5MzE0fQ.Da4q9bPn4sa0B4sGq6TLy3k5ZqW4mBzifGPjHIx8E-g",
-       },
-     }),[])
+     const { token } = useSelector((state) => state.auth.local);
+    const socket = useMemo(
+      () =>
+        io(apiLink, {
+          auth: {
+            token:
+              token ||
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiQ2tDaGF0IiwiaWF0IjoxNzAzODU5MzE0fQ.Da4q9bPn4sa0B4sGq6TLy3k5ZqW4mBzifGPjHIx8E-g"
+            //    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiQ2tDaGF0IiwiaWF0IjoxNzAzODU5MzE0fQ.Da4q9bPn4sa0B4sGq6TLy3k5ZqW4mBzifGPjHIx8E-g",
+          },
+        }),
+      [token]
+    );
     // const socket = useMemo(
     //   () =>
     //     io("https://ckchat-server.onrender.com/", {
