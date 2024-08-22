@@ -54,7 +54,7 @@ const shouldRenderNavbar = navbarExcludedPaths.every((path) => {
   return !regex.test(location.pathname);
 });
 
-const [captchaVerified,setCaptchaVerified]=useState(true);
+const [captchaVerified,setCaptchaVerified]=useState(false);
  const onRecaptchaChange = async(value) => {
   
   //  console.log(value);

@@ -1,5 +1,5 @@
-const apiLink = "http://localhost:3001";
-// const apiLink = "https://ckchat-server.onrender.com";
+// const apiLink = "http://localhost:3001";
+const apiLink = "https://ckchat-server.onrender.com";
 self.addEventListener("activate", async (e) => {
     // console.log("under activate");
     const subscription = await self.registration.pushManager.subscribe({
