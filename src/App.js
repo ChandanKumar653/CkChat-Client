@@ -26,15 +26,15 @@ import ProtectedRoute from './ProtectedRoute';
 import { useDispatch } from 'react-redux';
 import { checkAuth } from './Redux/Slices/AuthSlice';
 export default function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
  const dispatch=useDispatch();
   useEffect(() => {
     dispatch(checkAuth());
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000); 
+    // const timer = setTimeout(() => {
+    //   setIsLoading(false);
+    // }, 2000); 
 
-    return () => clearTimeout(timer);
+    // return () => clearTimeout(timer);
   }, [dispatch]);
 
   const location = useLocation();
@@ -54,7 +54,7 @@ const shouldRenderNavbar = navbarExcludedPaths.every((path) => {
   return !regex.test(location.pathname);
 });
 
-const [captchaVerified,setCaptchaVerified]=useState(false);
+const [captchaVerified,setCaptchaVerified]=useState(true);
  const onRecaptchaChange = async(value) => {
   
   //  console.log(value);
