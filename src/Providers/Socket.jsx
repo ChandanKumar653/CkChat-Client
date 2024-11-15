@@ -15,7 +15,7 @@ export const SocketProvider=(props)=>{
           auth: {
             token:
               token ||
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiQ2tDaGF0IiwiaWF0IjoxNzAzODU5MzE0fQ.Da4q9bPn4sa0B4sGq6TLy3k5ZqW4mBzifGPjHIx8E-g"
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiQ2tDaGF0IiwiaWF0IjoxNzMxNjg3NTgyfQ.ISUKLqUZH4BXfkQ2WRW30prcG8Hn7TOM0aN_yGz4634",
             //    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiQ2tDaGF0IiwiaWF0IjoxNzAzODU5MzE0fQ.Da4q9bPn4sa0B4sGq6TLy3k5ZqW4mBzifGPjHIx8E-g",
           },
         }),
